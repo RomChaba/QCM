@@ -12,7 +12,7 @@
           <a class="navbar-brand" href="/RomainAntoineQCM/">QCM ENI</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
-          <form action="#" method="POST" class="navbar-form navbar-right">
+          <form action="<%=request.getContextPath() %>/Connexion" method="POST" class="navbar-form navbar-right">
             <div class="form-group">
               <input name="login" type="text" placeholder="Login" class="form-control">
             </div>

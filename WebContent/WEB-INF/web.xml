@@ -7,22 +7,8 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
-  <servlet>
-    <servlet-name>AccesAnimateurPage</servlet-name>
-    <jsp-file>/login/accesAnimateur.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AccesAnimateurPage</servlet-name>
-    <url-pattern>/login/accesAnimateurPage</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>AccesCandidatPage</servlet-name>
-    <jsp-file>/login/accesCandidat.jsp</jsp-file>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AccesCandidatPage</servlet-name>
-    <url-pattern>/login/accesCandidatPage</url-pattern>
-  </servlet-mapping>
+
+
   <servlet>
     <servlet-name>Formations</servlet-name>
     <jsp-file>/formation/formations.jsp</jsp-file>
