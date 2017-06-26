@@ -1,4 +1,4 @@
-package fr.eni.QCM.connexion;
+package fr.eni.QCM.Controller;
 
 import java.io.IOException;
 import java.sql.Connection;
@@ -17,13 +17,13 @@ import fr.eni_ecole.jee.util.*;
  * Servlet implementation class Connexion
  */
 @WebServlet("/Connexion")
-public class Connexion extends HttpServlet {
+public class ConnexionController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
     /**
      * Default constructor. 
      */
-    public Connexion() {
+    public ConnexionController() {
         // TODO Auto-generated constructor stub
     }
 
