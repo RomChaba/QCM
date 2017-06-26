@@ -1,4 +1,4 @@
-package fr.eni_ecole.jee.util;
+package fr.eni.QCM.utils;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
