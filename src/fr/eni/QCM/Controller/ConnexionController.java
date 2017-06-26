@@ -11,7 +11,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import fr.eni_ecole.jee.util.*;
+
+import fr.eni.QCM.utils.*;
 
 /**
  * Servlet implementation class Connexion
