@@ -41,12 +41,13 @@ public class ConnexionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		HttpSession userSession = request.getSession();
-		if(request.getAttribute("deconnexion")!= null){
+		HttpSession userSession = request.getSession(false);
+		if(request.getParameter("deconnexion")!= null){
 			userSession.invalidate();
-			request.getRequestDispatcher("/Home").forward(request, response);
+			System.out.println("dans la déco");
+			response.sendRedirect("Home");
 		}else{
-		
+			System.out.println("else de la déco");
 			String login = request.getParameter(Const.PARAM_LOGIN);
 			String password = MD5.encode(request.getParameter(Const.PARAM_PASSWORD));
 					

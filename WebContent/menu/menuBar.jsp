@@ -25,15 +25,19 @@
 				%>
 				
 					<a class="navbar-brand" style="color:white">Bienvenue <%= c.getPrenom() %> <%= c.getNom() %></a>          
-					<a class="btn btn-warning" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
+					<a class="btn btn-warning form-control" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
+					
 	        	</div>
 				<%
 			}else if (type == 1){
 				Formateur f = (Formateur) session.getAttribute("Formateur");
 			%>
 			
-				<a class="navbar-brand text-center" style="color:white">Bienvenue <%=f.getPrenom() %> <%= f.getNom() %></a>
-				<a class="btn btn-warning" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
+				<a class="navbar-brand text-center" style="color:white;padding-left:1em">Bienvenue <%=f.getPrenom() %> <%= f.getNom() %></a>
+				<div class="navbar-form navbar-right">
+				<a class="btn btn-warning form-control col-md-2" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
+				</div>
+				
 			<%
 			}
 		}else{
