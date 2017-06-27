@@ -18,24 +18,27 @@
         </div>
         
    	<%
-		if(session.getAttribute("user") == "2"){
+  		if(session.getAttribute("type") != null){
+   		int type = Integer.valueOf(session.getAttribute("type").toString());
+		if(type == 2){
 			Candidat c = (Candidat) session.getAttribute("Candidat");
 			%>
 			<div id="navbar" class="navbar-collapse collapse">
-				<p>Bienvenue <%= c.getNom() %></p>          
+				<p style="color:white">Bienvenue <%= c.getNom() %></p>          
         	</div><!--/.navbar-collapse -->
 			<%
-		}else if (session.getAttribute("user") == "1"){
+		}else if (type == 1){
 			Formateur f = (Formateur) session.getAttribute("Formateur");
 		%>
 		<div id="navbar" class="navbar-collapse collapse">
-			<p>Bienvenue <%= f.getNom() %></p>
+			<p style="color:white">Bienvenue <%= f.getNom() %></p>
 		</div><!--/.navbar-collapse -->
 		<%
-		}else{
+		}}else{
+			
 		%>
 		<div id="navbar" class="navbar-collapse collapse">
-          <form action="<%=request.getContextPath() %>/Connexion" method="POST" class="navbar-form navbar-right">
+			<form action="<%=request.getContextPath() %>/Connexion" method="POST" class="navbar-form navbar-right">
             <div class="form-group">
               <input name="login" type="text" placeholder="Login" class="form-control">
             </div>

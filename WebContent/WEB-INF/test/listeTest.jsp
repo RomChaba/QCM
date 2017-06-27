@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+<%@page import="fr.eni.QCM.BO.Formateur"%>
+<%@page import="fr.eni.QCM.BO.Candidat"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -20,6 +22,12 @@ body {
 
 <body>
 <%@ include file="../../menu/menuBar.jsp"%>
+<%
+Formateur f = (Formateur) session.getAttribute("Formateur");
+%>
+<%= f.getPrenom() %>
+<%= f.getNom() %>
+
 <div class="col-md-2 col-md-offset-10">
 	<a href="#Creer_Test" style="margin-top:1em" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un test</a>
 </div>

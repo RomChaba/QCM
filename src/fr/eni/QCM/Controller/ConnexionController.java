@@ -11,6 +11,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import fr.eni.QCM.BO.Candidat;
 import fr.eni.QCM.BO.Formateur;
@@ -46,15 +47,22 @@ public class ConnexionController extends HttpServlet {
 		
 		try {
 			int typeUser = UtilisateurDAO.testConnexion(login, password);
+	    	HttpSession userSession = request.getSession();
+	    	
 	    	
 			// Formateur
 			if(typeUser == 1) { 
 				Formateur formateur = FormateurDAO.getFormateur(login, password);
+				userSession.setAttribute("type", typeUser);
+				
+				userSession.setAttribute("Formateur", formateur);
 	    		request.getRequestDispatcher("/ListeTest").forward(request, response);
 	    		
 			// Candidat
 			} else if(typeUser == 2) {
 				Candidat candidat = CandidatDAO.getCandidat(login, password);
+				userSession.setAttribute("type", typeUser);
+				userSession.setAttribute("Candidat", candidat);
 	    		request.getRequestDispatcher("/MesTest").forward(request, response);
 	    		
 			// Mauvais identifiants
