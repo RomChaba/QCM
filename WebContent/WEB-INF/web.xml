@@ -9,7 +9,6 @@
   </session-config>
 
 
-
   <servlet>
     <servlet-name>ListeTest</servlet-name>
     <jsp-file>/WEB-INF/test/listeTest.jsp</jsp-file>
@@ -18,6 +17,8 @@
     <servlet-name>ListeTest</servlet-name>
     <url-pattern>/ListeTest</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>MesTest</servlet-name>
     <jsp-file>/WEB-INF/test/listeTestCandidat.jsp</jsp-file>
@@ -26,6 +27,8 @@
     <servlet-name>MesTest</servlet-name>
     <url-pattern>/MesTest</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>CreerTest</servlet-name>
     <jsp-file>/WEB-INF/test/CreerTest.jsp</jsp-file>
@@ -34,6 +37,8 @@
     <servlet-name>CreerTest</servlet-name>
     <url-pattern>/CreerTest</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>AjoutSectionTest</servlet-name>
     <jsp-file>/WEB-INF/test/AjoutSectionTest.jsp</jsp-file>
@@ -42,6 +47,8 @@
     <servlet-name>AjoutSectionTest</servlet-name>
     <url-pattern>/AjoutSectionTest</url-pattern>
   </servlet-mapping>
+  
+  
   <servlet>
     <servlet-name>index</servlet-name>
     <jsp-file>/index.jsp</jsp-file>

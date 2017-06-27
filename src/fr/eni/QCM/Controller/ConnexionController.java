@@ -60,7 +60,8 @@ public class ConnexionController extends HttpServlet {
 					userSession.setAttribute("type", typeUser);
 					
 					userSession.setAttribute("Formateur", formateur);
-		    		request.getRequestDispatcher("/ListeTest").forward(request, response);
+		    		//request.getRequestDispatcher("/ListeTest").forward(request, response);
+		            response.sendRedirect("listeTest");
 		    		
 				// Candidat
 				} else if(typeUser == 2) {

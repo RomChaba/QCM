@@ -11,7 +11,7 @@ import fr.eni.QCM.utils.AccesBase;
 public class FormateurDAO {
 
 	static String SQL_LOGIN = "SELECT * FROM Utilisateur WHERE login = ? AND password = ?";
-	static String SQL_GET_ONE_FORMATEUR = "SELECT * FROM Formateur WHERE id = ?";
+	static String SQL_GET_ONE_FORMATEUR = "SELECT * FROM Formateur INNER JOIN Utilisateur ON Utilisateur.id = Formateur.idUtilisateur WHERE id = ?";
 	
 	public static Formateur getOne(int id) throws SQLException {
 		Connection cnx = null;
