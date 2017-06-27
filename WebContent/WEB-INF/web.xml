@@ -7,11 +7,7 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
-<<<<<<< HEAD
 
-
-=======
->>>>>>> 926971c5776a08d64091c6b8197c6dd6cdbae136
   <servlet>
     <servlet-name>ListeTest</servlet-name>
     <jsp-file>/WEB-INF/test/JSP_listeTest.jsp</jsp-file>
