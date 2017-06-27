@@ -12,7 +12,7 @@
 
   <servlet>
     <servlet-name>ListeTest</servlet-name>
-    <jsp-file>/WEB-INF/test/listeTest.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_listeTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListeTest</servlet-name>
@@ -20,7 +20,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>MesTest</servlet-name>
-    <jsp-file>/WEB-INF/test/listeTestCandidat.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_listeTestCandidat.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>MesTest</servlet-name>
@@ -28,7 +28,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>CreerTest</servlet-name>
-    <jsp-file>/WEB-INF/test/CreerTest.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_CreerTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreerTest</servlet-name>
@@ -36,7 +36,7 @@
   </servlet-mapping>
   <servlet>
     <servlet-name>AjoutSectionTest</servlet-name>
-    <jsp-file>/WEB-INF/test/AjoutSectionTest.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_AjoutSectionTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>AjoutSectionTest</servlet-name>
