@@ -37,7 +37,6 @@ Formateur f = (Formateur) session.getAttribute("Formateur");
 	<thead>
 		<th>Titre</th>
 		<th>Nb question</th>
-		<th>Date de création</th>
 		<th>Modifier</th>
 		<th>Stagiaire</th>
 		<th>Supprimer</th>
@@ -47,7 +46,6 @@ Formateur f = (Formateur) session.getAttribute("Formateur");
 	<tr>
 	<td>PHP</td>
 	<td>50</td>
-	<td>20/05/2017</td>
 	<td><a class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
 	<td><a class="btn btn-primary"><span class="glyphicon glyphicon-user"></span></a></td>
 	<td><a class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span></a></td>
