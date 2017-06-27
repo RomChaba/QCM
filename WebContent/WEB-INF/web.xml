@@ -9,6 +9,44 @@
   </session-config>
 
 
+
+  <servlet>
+    <servlet-name>ListeTest</servlet-name>
+    <jsp-file>/WEB-INF/test/listeTest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListeTest</servlet-name>
+    <url-pattern>/ListeTest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>MesTest</servlet-name>
+    <jsp-file>/WEB-INF/test/listeTestCandidat.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>MesTest</servlet-name>
+    <url-pattern>/MesTest</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>CreerTest</servlet-name>
+    <jsp-file>/WEB-INF/test/CreerTest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerTest</servlet-name>
+    <url-pattern>/CreerTest</url-pattern>
+  </servlet-mapping>
+
+  <servlet>
+    <servlet-name>index</servlet-name>
+    <jsp-file>/index.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>index</servlet-name>
+    <url-pattern>/Home</url-pattern>
+  </servlet-mapping>
+
+
+<!-- ANCIENT  -->
+
   <servlet>
     <servlet-name>Formations</servlet-name>
     <jsp-file>/formation/formations.jsp</jsp-file>
