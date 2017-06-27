@@ -2,10 +2,9 @@ package fr.eni.QCM.Controller;
 
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.sql.Connection;
-import java.sql.ResultSet;
+import java.nio.charset.StandardCharsets;
+import java.security.*;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,7 +17,8 @@ import fr.eni.QCM.BO.Formateur;
 import fr.eni.QCM.DAL.CandidatDAO;
 import fr.eni.QCM.DAL.FormateurDAO;
 import fr.eni.QCM.DAL.UtilisateurDAO;
-import fr.eni.QCM.utils.*;
+import fr.eni.QCM.utils.Const;
+import fr.eni.QCM.utils.MD5;
 
 /**
  * Servlet implementation class Connexion
@@ -40,18 +40,21 @@ public class ConnexionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
+
+		String login = request.getParameter(Const.PARAM_LOGIN);
+		String password = MD5.encode(request.getParameter(Const.PARAM_PASSWORD));
 		
 		try {
-			int typeUser = UtilisateurDAO.testConnexion("antoine", "e3d96c321f2a71cb81cd7d5f05f1a8d7");
+			int typeUser = UtilisateurDAO.testConnexion(login, password);
 	    	
 			// Formateur
 			if(typeUser == 1) { 
-				Formateur formateur = FormateurDAO.getFormateur("antoine", "e3d96c321f2a71cb81cd7d5f05f1a8d7");
+				Formateur formateur = FormateurDAO.getFormateur(login, password);
 	    		request.getRequestDispatcher("/ListeTest").forward(request, response);
 	    		
 			// Candidat
 			} else if(typeUser == 2) {
-				Candidat candidat = CandidatDAO.getCandidat("jean", "e3d96c321f2a71cb81cd7d5f05f1a8d7");
+				Candidat candidat = CandidatDAO.getCandidat(login, password);
 	    		request.getRequestDispatcher("/MesTest").forward(request, response);
 	    		
 			// Mauvais identifiants
