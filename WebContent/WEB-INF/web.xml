@@ -7,11 +7,14 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 926971c5776a08d64091c6b8197c6dd6cdbae136
   <servlet>
     <servlet-name>ListeTest</servlet-name>
-    <jsp-file>/WEB-INF/test/listeTest.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_listeTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>ListeTest</servlet-name>
@@ -21,7 +24,7 @@
   
   <servlet>
     <servlet-name>MesTest</servlet-name>
-    <jsp-file>/WEB-INF/test/listeTestCandidat.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_listeTestCandidat.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>MesTest</servlet-name>
@@ -31,7 +34,7 @@
   
   <servlet>
     <servlet-name>CreerTest</servlet-name>
-    <jsp-file>/WEB-INF/test/CreerTest.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_CreerTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>CreerTest</servlet-name>
@@ -41,7 +44,7 @@
   
   <servlet>
     <servlet-name>AjoutSectionTest</servlet-name>
-    <jsp-file>/WEB-INF/test/AjoutSectionTest.jsp</jsp-file>
+    <jsp-file>/WEB-INF/test/JSP_AjoutSectionTest.jsp</jsp-file>
   </servlet>
   <servlet-mapping>
     <servlet-name>AjoutSectionTest</servlet-name>
@@ -57,5 +60,4 @@
     <servlet-name>index</servlet-name>
     <url-pattern>/Home</url-pattern>
   </servlet-mapping>
-
 </web-app>
