@@ -7,9 +7,6 @@
   <session-config>
     <session-timeout>10</session-timeout>
   </session-config>
-
-
-
   <servlet>
     <servlet-name>ListeTest</servlet-name>
     <jsp-file>/WEB-INF/test/JSP_listeTest.jsp</jsp-file>
@@ -50,5 +47,4 @@
     <servlet-name>index</servlet-name>
     <url-pattern>/Home</url-pattern>
   </servlet-mapping>
-
 </web-app>
