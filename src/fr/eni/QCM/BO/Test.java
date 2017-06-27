@@ -1,5 +1,7 @@
 package fr.eni.QCM.BO;
 
+import java.util.ArrayList;
+
 public class Test {
 	
 	// ATTRIBUTS
@@ -8,6 +10,7 @@ public class Test {
 	public int timer;
 	public Formateur formateur;
 	public TypeTest typeTest;
+	public ArrayList<Section> sections;
 	
 	// CONSTRUCTEURS
 	public Test() {
@@ -20,6 +23,7 @@ public class Test {
 		this.timer = timer;
 		this.formateur = formateur;
 		this.typeTest = typeTest;
+		this.sections = new ArrayList<Section>();
 	}
 
 	// ID
@@ -41,6 +45,10 @@ public class Test {
 	// TYPE_TEST
 	public TypeTest getTypeTest() {return typeTest;}
 	public void setTypeTest(TypeTest typeTest) {this.typeTest = typeTest;}
+
+	// SECTIONS
+	public ArrayList<Section> getSections() {return sections;}
+	public void addSection(Section section){this.sections.add(section);}
 	
 	
 	

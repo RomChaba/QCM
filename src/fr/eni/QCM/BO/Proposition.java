@@ -1,4 +1,4 @@
-import fr.eni.QCM.BO.Question;
+package fr.eni.QCM.BO;
 
 
 public class Proposition {
