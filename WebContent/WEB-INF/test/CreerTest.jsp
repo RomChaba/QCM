@@ -15,7 +15,12 @@ body {
   padding-top: 50px;
   padding-bottom: 20px;
 }
-
+#timermin,#timersec{
+	width:5em!important;
+}
+.creaTest{
+	padding-bottom:1em!important;
+}
 </style>
 
 <body>
@@ -24,29 +29,33 @@ body {
 <div class="col-md-offset-2 col-md-8 well">
 	<h1>Création d'un test </h1>
 	<form action="#" class="form-inline" method="POST">
-		<div class="form-group col-md-12">
-		<label class="col-md-3" for="nom">Nom : </label>
+		<div class="creaTest form-group col-md-12">
+		<label class="col-md-4" for="nom">Nom : </label>
 		<input class="form-control" type="text" name="nom" id="nom" />
 		</div>
-		<div class="form-group col-md-12">
-		<label class="col-md-3" for="description">Description : </label>
+		<div class="creaTest form-group col-md-12">
+		<label class="col-md-4" for="description">Description : </label>
 		<textarea class="form-control" name="description" id="desc" cols="30" rows="10"></textarea>
 		</div>
-		<div class="form-group col-md-12">
-		<label class="col-md-3" for="timer">Timer : </label>
-		<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbdsp;minutes</span>
+		<div class="creaTest form-group col-md-12">
+		<label class="col-md-4" for="timer">Timer : </label>
+		<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbsp;minutes</span>
 		<span><input class="form-control" type="number" name="timersec" id="timersec" /> secondes</span>
 		</div>
-		<div class="form-group col-md-12">
-		<label class="col-md-3" for="nbMaxQuestion">Nombre de question maximum : </label>
+		<div class="creaTest form-group col-md-12">
+		<label class="col-md-4" for="nbMaxQuestion">Nombre de question maximum : </label>
 		<input class="form-control" type="number" name="nbMaxQuestion" id="nbMaxQuestion" />
 		</div>
-		<div class="form-group col-md-12">
-		<label class="col-md-3" for="type">Type : </label>
+		<div class="creaTest form-group col-md-12">
+		<label class="col-md-4" for="type">Type : </label>
 		<select name="type" id="type">
 		<option value="1">ECF</option>
 		<option value="2">A COMPLÉTER AUTO</option>
 		</select>
+		</div>
+		<div class="col-md-offset-3 col-md-5">
+		<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
+		<a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-arrow-right"></span>Suivant</a>
 		</div>
 	</form>
 </div>

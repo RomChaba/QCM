@@ -9,7 +9,10 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/RomainAntoineQCM/">QCM ENI</a>
+          <span>
+          	<a class="navbar-brand" href="/RomainAntoineQCM/">QCM ENI</a>
+          	<img src="http://www.lemag-numerique.com/wp-content/uploads/2014/02/photo.jpg" style="height:50px;width:50px" />
+          </span>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <form action="<%=request.getContextPath() %>/Connexion" method="POST" class="navbar-form navbar-right">
