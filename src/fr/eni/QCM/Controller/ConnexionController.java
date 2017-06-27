@@ -43,16 +43,6 @@ public class ConnexionController extends HttpServlet {
 		
 		try {
 			int typeUser = UtilisateurDAO.testConnexion("antoine", "e3d96c321f2a71cb81cd7d5f05f1a8d7");
-			
-
-
-	    	if(/*le test retourne un formateur*/false){
-	    		request.getRequestDispatcher("/ListeTest").forward(request, response);
-	    	}else if(/*le test retourne un stagiaire*/ false){
-	    		request.getRequestDispatcher("/MesTest").forward(request, response);
-	    	}else{
-	    		request.getRequestDispatcher("/Home").forward(request, response);
-	    	}
 	    	
 			// Formateur
 			if(typeUser == 1) { 
@@ -72,7 +62,6 @@ public class ConnexionController extends HttpServlet {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
 	}
 
 	/**
