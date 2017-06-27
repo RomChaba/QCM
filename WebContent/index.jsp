@@ -28,7 +28,7 @@ body {
 
   <body>
 
-    <%@ include file="../menu/menuBar.jsp"%>
+    <%@ include file="../menu/JSP_menuBar.jsp"%>
 
     <!-- Main jumbotron for a primary marketing message or call to action -->
     <div class="jumbotron">

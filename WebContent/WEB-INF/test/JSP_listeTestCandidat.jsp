@@ -19,7 +19,7 @@ body {
 </style>
 
 <body>
-<%@ include file="../../menu/menuBar.jsp"%>
+<%@ include file="../../menu/JSP_menuBar.jsp"%>
 
 <div class="col-md-12">
 	<h1>Liste des tests : </h1>

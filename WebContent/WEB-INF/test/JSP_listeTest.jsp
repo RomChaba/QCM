@@ -21,7 +21,7 @@ body {
 </style>
 
 <body>
-<%@ include file="../../menu/menuBar.jsp"%>
+<%@ include file="../../menu/JSP_menuBar.jsp"%>
 
 <div class="col-md-2 col-md-offset-10">
 	<a href="#Creer_Test" style="margin-top:1em" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un test</a>

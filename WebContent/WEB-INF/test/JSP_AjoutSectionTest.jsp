@@ -24,7 +24,7 @@ body {
 </style>
 
 <body>
-<%@ include file="../../menu/menuBar.jsp"%>
+<%@ include file="../../menu/JSP_menuBar.jsp"%>
 <div class="col-md-12">
 <p class="text-center"><i>Veuilliez choisir ou créer une section du test</i></h1>
 <div class="col-md-6">
