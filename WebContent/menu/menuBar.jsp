@@ -19,24 +19,27 @@
         
    	<%
   		if(session.getAttribute("type") != null){
-   		int type = Integer.valueOf(session.getAttribute("type").toString());
-		if(type == 2){
-			Candidat c = (Candidat) session.getAttribute("Candidat");
+	   		int type = Integer.valueOf(session.getAttribute("type").toString());
+			if(type == 2){
+				Candidat c = (Candidat) session.getAttribute("Candidat");
+				%>
+				
+					<a class="navbar-brand" style="color:white">Bienvenue <%= c.getPrenom() %> <%= c.getNom() %></a>          
+					<a class="btn btn-warning" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
+	        	</div>
+				<%
+			}else if (type == 1){
+				Formateur f = (Formateur) session.getAttribute("Formateur");
 			%>
-			<div id="navbar" class="navbar-collapse collapse">
-				<p style="color:white">Bienvenue <%= c.getNom() %></p>          
-        	</div><!--/.navbar-collapse -->
+			
+				<a class="navbar-brand text-center" style="color:white">Bienvenue <%=f.getPrenom() %> <%= f.getNom() %></a>
+				<a class="btn btn-warning" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
 			<%
-		}else if (type == 1){
-			Formateur f = (Formateur) session.getAttribute("Formateur");
-		%>
-		<div id="navbar" class="navbar-collapse collapse">
-			<p style="color:white">Bienvenue <%= f.getNom() %></p>
-		</div><!--/.navbar-collapse -->
-		<%
-		}}else{
+			}
+		}else{
 			
 		%>
+		
 		<div id="navbar" class="navbar-collapse collapse">
 			<form action="<%=request.getContextPath() %>/Connexion" method="POST" class="navbar-form navbar-right">
             <div class="form-group">

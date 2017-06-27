@@ -41,37 +41,42 @@ public class ConnexionController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	    response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-
-		String login = request.getParameter(Const.PARAM_LOGIN);
-		String password = MD5.encode(request.getParameter(Const.PARAM_PASSWORD));
+		HttpSession userSession = request.getSession();
+		if(request.getAttribute("deconnexion")!= null){
+			userSession.invalidate();
+			request.getRequestDispatcher("/Home").forward(request, response);
+		}else{
 		
-		try {
-			int typeUser = UtilisateurDAO.testConnexion(login, password);
-	    	HttpSession userSession = request.getSession();
-	    	
-	    	
-			// Formateur
-			if(typeUser == 1) { 
-				Formateur formateur = FormateurDAO.getFormateur(login, password);
-				userSession.setAttribute("type", typeUser);
+			String login = request.getParameter(Const.PARAM_LOGIN);
+			String password = MD5.encode(request.getParameter(Const.PARAM_PASSWORD));
+					
+			try {
+				int typeUser = UtilisateurDAO.testConnexion(login, password);
+		    	
 				
-				userSession.setAttribute("Formateur", formateur);
-	    		request.getRequestDispatcher("/ListeTest").forward(request, response);
-	    		
-			// Candidat
-			} else if(typeUser == 2) {
-				Candidat candidat = CandidatDAO.getCandidat(login, password);
-				userSession.setAttribute("type", typeUser);
-				userSession.setAttribute("Candidat", candidat);
-	    		request.getRequestDispatcher("/MesTest").forward(request, response);
-	    		
-			// Mauvais identifiants
-			} else {	
-	    		request.getRequestDispatcher("/Home").forward(request, response);		
+				// Formateur
+				if(typeUser == 1) { 
+					Formateur formateur = FormateurDAO.getFormateur(login, password);
+					userSession.setAttribute("type", typeUser);
+					
+					userSession.setAttribute("Formateur", formateur);
+		    		request.getRequestDispatcher("/ListeTest").forward(request, response);
+		    		
+				// Candidat
+				} else if(typeUser == 2) {
+					Candidat candidat = CandidatDAO.getCandidat(login, password);
+					userSession.setAttribute("type", typeUser);
+					userSession.setAttribute("Candidat", candidat);
+		    		request.getRequestDispatcher("/MesTest").forward(request, response);
+		    		
+				// Mauvais identifiants
+				} else {	
+		    		request.getRequestDispatcher("/Home").forward(request, response);		
+				}
+	
+			} catch (SQLException e) {
+				e.printStackTrace();
 			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
 		}
 	}
 
