@@ -34,7 +34,14 @@
     <servlet-name>CreerTest</servlet-name>
     <url-pattern>/CreerTest</url-pattern>
   </servlet-mapping>
-
+  <servlet>
+    <servlet-name>AjoutSectionTest</servlet-name>
+    <jsp-file>/WEB-INF/test/AjoutSectionTest.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjoutSectionTest</servlet-name>
+    <url-pattern>/AjoutSectionTest</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>index</servlet-name>
     <jsp-file>/index.jsp</jsp-file>

@@ -26,8 +26,9 @@ body {
 <body>
 <%@ include file="../../menu/menuBar.jsp"%>
 <div class="col-md-12">
+<h1 class="text-center">Création d'un test </h1>
 <div class="col-md-offset-2 col-md-8 well">
-	<h1>Création d'un test </h1>
+	
 	<form action="#" class="form-inline" method="POST">
 		<div class="creaTest form-group col-md-12">
 		<label class="col-md-4" for="nom">Nom : </label>
@@ -35,7 +36,7 @@ body {
 		</div>
 		<div class="creaTest form-group col-md-12">
 		<label class="col-md-4" for="description">Description : </label>
-		<textarea class="form-control" name="description" id="desc" cols="30" rows="10"></textarea>
+		<textarea class="form-control col-md-12" name="description" id="desc" rows="4"></textarea>
 		</div>
 		<div class="creaTest form-group col-md-12">
 		<label class="col-md-4" for="timer">Timer : </label>
@@ -53,7 +54,7 @@ body {
 		<option value="2">A COMPLÉTER AUTO</option>
 		</select>
 		</div>
-		<div class="col-md-offset-3 col-md-5">
+		<div class="text-center">
 		<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
 		<a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-arrow-right"></span>Suivant</a>
 		</div>
