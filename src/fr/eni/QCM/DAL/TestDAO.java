@@ -16,7 +16,7 @@ public class TestDAO {
 	static String SQL_GET_ALL = "SELECT * FROM Test";
 	static String SQL_DELETE = "DELETE FROM Test WHERE id = ?";
 	static String SQL_ADD = "INSERT INTO TEST VALUES(?, ?, ?, ?)";
-	static String SQL_GET_ONE_BY_LIBELLE = "SELECT * FROM Test WHERE libelle = ?";
+	static String SQL_GET_ONE_BY_LIBELLE = "SELECT * FROM Test WHERE libelle like ?";
 	
 	public static Test getOne(int id) throws SQLException {
 		Connection cnx = null;
@@ -68,6 +68,8 @@ public class TestDAO {
 						);
 			}
 			
+		}catch(Exception e){
+			System.out.println(e);
 		}finally{
 			if (rs!=null) rs.close();
 			if (rqt!=null) rqt.close();

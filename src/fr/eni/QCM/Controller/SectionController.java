@@ -46,7 +46,6 @@ public class SectionController extends HttpServlet {
 		Formateur f = (Formateur)userSession.getAttribute("Formateur");
 		
 		if(request.getParameter("modif") != null){
-			System.out.println("modif dune section");
 			int id = Integer.valueOf(request.getParameter("modif"));
 			String libelle =request.getParameter("libelle");
 			
@@ -58,7 +57,7 @@ public class SectionController extends HttpServlet {
 			}
 			response.sendRedirect("./SectionController");
 		}else if(request.getParameter("add") != null){
-			System.out.println("Add dune section");
+			
 			int idFormateur = f.getId();
 			String libelle =request.getParameter("libelle");
 			
@@ -72,7 +71,7 @@ public class SectionController extends HttpServlet {
 			
 			
 		}else if(request.getParameter("modifid") != null){
-			System.out.println("recuperation de la section a modifier");
+			
 			
 			int idSection =Integer.valueOf(request.getParameter("modifid"));
 			
@@ -87,7 +86,7 @@ public class SectionController extends HttpServlet {
 			
 			
 		}else if(request.getParameter("suppid") != null){
-			System.out.println("suppression de la section");
+			
 			
 			int idSection =Integer.valueOf(request.getParameter("suppid"));
 			
@@ -101,10 +100,11 @@ public class SectionController extends HttpServlet {
 			
 			
 		}else{
-			System.out.println("Affchage sections");
+			
 			ArrayList<Integer> nbquestion = new ArrayList<>();
 			Map<Section,Integer> secEtNbQue = new LinkedHashMap<>();
 			Test t = null;
+			
 			try {
 				t = TestDAO.getOneByLibelle((String) request.getAttribute("nomTest"));
 			} catch (SQLException e1) {

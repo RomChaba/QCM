@@ -40,7 +40,7 @@ Test t = (Test)request.getAttribute("test");
 <p class="text-center"><i>Veuilliez choisir ou créer une section du test</i></h1>
 <div class="col-md-6">
 	<div class="col-md-6">
-	<p>Section du test <%= t.toString() %>: </p>
+	<p>Section du test <%= t.getLibelle() %>: </p>
 	</div>
 	<div class="col-md-2">
 	<a href="<%=request.getContextPath()%>/CreerModifSection" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer une nouvelle section</a>

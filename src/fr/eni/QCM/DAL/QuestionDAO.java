@@ -43,6 +43,7 @@ public class QuestionDAO {
 		return question;
 	}
 	public static int getNbParSection(int id) throws SQLException {
+		System.out.println("TEST DANS UNE DAO OK");
 		Connection cnx = null;
 		PreparedStatement rqt = null;
 		ResultSet rs = null;
