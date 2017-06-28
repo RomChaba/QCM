@@ -45,7 +45,9 @@ public class TestAddController extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		response.setContentType("text/plain");
+		PrintWriter out = response.getWriter();
+		
 		String nom = request.getParameter("nom");
 		int timermin = Integer.valueOf(request.getParameter("timermin"));
 		int timersec = Integer.valueOf(request.getParameter("timersec"));
@@ -56,12 +58,10 @@ public class TestAddController extends HttpServlet {
 		
 		Test test = null;
 		try {
-			TestDAO.add(nom, timer, user.getId(), type);
-			test = TestDAO.getOneByLibelle(nom);
-			
+			TestDAO.add(nom, timer, user.getId(), type);			
 		} catch (SQLException e) {e.printStackTrace();}
 
-		request.setAttribute("test", test);
+		request.setAttribute("nomTest", nom);
 		request.getRequestDispatcher("/SectionController").forward(request, response);
 	}
 

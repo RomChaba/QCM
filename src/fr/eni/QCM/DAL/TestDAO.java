@@ -60,10 +60,10 @@ public class TestDAO {
 			
 			while (rs.next()){
 				test = new Test(
-						rs.getInt("id"), 
-						rs.getString("libelle"), 
-						rs.getInt("timer"), 
-						FormateurDAO.getOne(rs.getInt("idFormateur")), 
+						rs.getInt("id"),
+						rs.getString("libelle"),
+						rs.getInt("timer"),
+						FormateurDAO.getOne(rs.getInt("idFormateur")),
 						TypeTestDAO.getOne(rs.getInt("idTypeTest"))
 						);
 			}

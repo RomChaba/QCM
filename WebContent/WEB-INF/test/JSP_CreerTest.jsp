@@ -36,30 +36,46 @@ body {
 <div class="col-md-12">
 <%	if(leTest != null) { %>
 	<h1 class="text-center">Modification d'un test</h1>
+<%	} else { %>
+	<h1 class="text-center">Création d'un test</h1>
+<% } %>
+
 	<div class="col-md-offset-2 col-md-8 well">
-			<form action="" class="form-inline" method="POST">
-				<div class="creaTest form-group col-md-12">
-					<label class="col-md-4" for="nom">Nom : </label>
-					<input class="form-control" type="text" name="nom" id="nom" value="<%= leTest.getLibelle() %>"/>
-				</div>
+		<form action="" class="form-inline" method="POST">
+			<div class="creaTest form-group col-md-12">
+				<label class="col-md-4" for="nom">Nom : </label>
+				<%	if(leTest != null) { %>
+						<input class="form-control" type="text" name="nom" id="nom" value="<%= leTest.getLibelle() %>"/>
+				<%	} else { %>
+						<input class="form-control" type="text" name="nom" id="nom" />
+				<% 	} %>
+			</div>
 				<div class="creaTest form-group col-md-12">
 					<label class="col-md-4" for="timer">Timer : </label>
-					<span><input class="form-control" type="number" name="timermin" id="timermin" value="<%= leTest.getTimer() / 60 %>"/>&nbsp;minutes</span>
-					<span><input class="form-control" type="number" name="timersec" id="timersec" value="<%= leTest.getTimer() %>"/> secondes</span>
+					<%	if(leTest != null) { %>
+						<span><input class="form-control" type="number" name="timermin" id="timermin" value="<%= leTest.getTimer() / 60 %>"/>&nbsp;minutes</span>
+						<span><input class="form-control" type="number" name="timersec" id="timersec" value="<%= leTest.getTimer() % 60 %>"/> secondes</span>
+					<%	} else { %>
+						<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbsp;minutes</span>
+						<span><input class="form-control" type="number" name="timersec" id="timersec" /> secondes</span>
+					<% 	} %>
 				</div>
 				<div class="creaTest form-group col-md-12">
 					<label class="col-md-4" for="type">Type : </label>
 					<select name="type" id="type">
-		<%	
-			
-			if (AllTypes != null && !AllTypes.isEmpty()) {
-				for (TypeTest type : AllTypes) {
-		%>
-						<option value="<%= type.getId() %>"><%= type.getLibelle() %></option>	
-		<%		}
-			}
-			%>
-					</select>
+<%						if (AllTypes != null && !AllTypes.isEmpty()) {
+							for (TypeTest type : AllTypes) {
+%>
+								<option value="<%= type.getId() %>"
+									<%	if(leTest != null && leTest.getTypeTest().equals(type.getId())) { %>
+											selected="selected"
+									<%	} %>
+								>
+									<%= type.getLibelle() %>
+								</option>	
+<%							}
+						}
+%>					</select>
 				</div>
 				<div class="text-center">
 					<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
@@ -67,40 +83,6 @@ body {
 				</div>
 			</form>
 		</div>
-<%	} else { %>
-	<h1 class="text-center">Création d'un test</h1>
-	<div class="col-md-offset-2 col-md-8 well">
-		<form action="" class="form-inline" method="POST">
-			<div class="creaTest form-group col-md-12">
-				<label class="col-md-4" for="nom">Nom : </label>
-				<input class="form-control" type="text" name="nom" id="nom" />
-			</div>
-			<div class="creaTest form-group col-md-12">
-				<label class="col-md-4" for="timer">Timer : </label>
-				<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbsp;minutes</span>
-				<span><input class="form-control" type="number" name="timersec" id="timersec" /> secondes</span>
-			</div>
-			<div class="creaTest form-group col-md-12">
-				<label class="col-md-4" for="type">Type : </label>
-				<select name="type" id="type">
-	<%	
-		
-		if (AllTypes != null && !AllTypes.isEmpty()) {
-			for (TypeTest type : AllTypes) {
-	%>
-					<option value="<%= type.getId() %>"><%= type.getLibelle() %></option>	
-	<%		}
-		}
-		%>
-				</select>
-			</div>
-			<div class="text-center">
-				<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
-				<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder"/>
-			</div>
-		</form>
-	</div>
-<% } %>
 
 </div>		
 
