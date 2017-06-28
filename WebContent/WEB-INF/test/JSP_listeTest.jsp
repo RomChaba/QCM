@@ -34,6 +34,7 @@ body {
 			<th>Titre</th>
 			<th>Créateur</th>
 			<th>Type</th>
+			<th>Timer</th>
 			<th>Modifier</th>
 			<th>Stagiaire</th>
 			<th>Supprimer</th>
@@ -51,9 +52,10 @@ body {
 			<td><%= test.getLibelle() %></td>
 			<td><%= test.getFormateur().getNom() + " " + test.getFormateur().getPrenom() %></td>
 			<td><%= test.getTypeTest().getLibelle() %></td>
-			<td><a class='btn btn-primary' href="<%=request.getContextPath() %>/Test?update=<%= test.getId() %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
-			<td><a class='btn btn-primary'><span class='glyphicon glyphicon-user'></span></a></td>
-			<td><a class='btn btn-primary' href="<%=request.getContextPath() %>/Test?delete=<%= test.getId() %>"><span class='glyphicon glyphicon-remove'></span></a></td>			
+			<td><%= test.getTimer()/60 %>' <%= test.getTimer()%60 %>''</td>
+			<td><a class='btn btn-warning' href="<%=request.getContextPath() %>/Test?update=<%= test.getId() %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
+			<td><a class='btn btn-success'><span class='glyphicon glyphicon-user'></span></a></td>
+			<td><a class='btn btn-danger' href="<%=request.getContextPath() %>/Test?delete=<%= test.getId() %>"><span class='glyphicon glyphicon-remove'></span></a></td>			
 		</tr>		
 <%		}
 	}

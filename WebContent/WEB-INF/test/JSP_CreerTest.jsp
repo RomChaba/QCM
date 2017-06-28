@@ -41,12 +41,14 @@ body {
 <% } %>
 
 	<div class="col-md-offset-2 col-md-8 well">
-		<form action="" class="form-inline" method="POST">
+		<form action="./Test/Add" class="form-inline" method="POST">
 			<div class="creaTest form-group col-md-12">
 				<label class="col-md-4" for="nom">Nom : </label>
 				<%	if(leTest != null) { %>
+						<input type="hidden" name="update" value="<%= leTest.getId() %>" />
 						<input class="form-control" type="text" name="nom" id="nom" value="<%= leTest.getLibelle() %>"/>
 				<%	} else { %>
+						<input type="hidden" name="update" value="0" />
 						<input class="form-control" type="text" name="nom" id="nom" />
 				<% 	} %>
 			</div>
@@ -56,8 +58,8 @@ body {
 						<span><input class="form-control" type="number" name="timermin" id="timermin" value="<%= leTest.getTimer() / 60 %>"/>&nbsp;minutes</span>
 						<span><input class="form-control" type="number" name="timersec" id="timersec" value="<%= leTest.getTimer() % 60 %>"/> secondes</span>
 					<%	} else { %>
-						<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbsp;minutes</span>
-						<span><input class="form-control" type="number" name="timersec" id="timersec" /> secondes</span>
+						<span><input class="form-control" type="number" name="timermin" id="timermin" value="0" />&nbsp;minutes</span>
+						<span><input class="form-control" type="number" name="timersec" id="timersec" value="0" /> secondes</span>
 					<% 	} %>
 				</div>
 				<div class="creaTest form-group col-md-12">
@@ -66,8 +68,8 @@ body {
 <%						if (AllTypes != null && !AllTypes.isEmpty()) {
 							for (TypeTest type : AllTypes) {
 %>
-								<option value="<%= type.getId() %>"
-									<%	if(leTest != null && leTest.getTypeTest().equals(type.getId())) { %>
+								<option value="<%= type.getId() %>" 
+									<%	if(leTest != null && leTest.getTypeTest().getId() == type.getId()) { %>
 											selected="selected"
 									<%	} %>
 								>
@@ -78,7 +80,7 @@ body {
 %>					</select>
 				</div>
 				<div class="text-center">
-					<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
+					<a style="margin-right:1em" href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
 					<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder"/>
 				</div>
 			</form>

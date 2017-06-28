@@ -58,6 +58,16 @@
   
   
   <servlet>
+    <servlet-name>CreerQuestion</servlet-name>
+    <jsp-file>/WEB-INF/question/JSP_CreerQuestion.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerQuestion</servlet-name>
+    <url-pattern>/CreerQuestion</url-pattern>
+  </servlet-mapping>
+  
+  
+  <servlet>
     <servlet-name>index</servlet-name>
     <jsp-file>/index.jsp</jsp-file>
   </servlet>

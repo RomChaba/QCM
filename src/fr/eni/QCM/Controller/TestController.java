@@ -46,19 +46,18 @@ public class TestController extends HttpServlet {
 			try {
 				AllTypesTest = TypeTestDAO.getAll();
 			} catch (SQLException e) {e.printStackTrace();}
-			
+
 			request.setAttribute("types", AllTypesTest);
 			
 			int id = Integer.valueOf(request.getParameter("update"));
 			Test test = null;
-			
+
 			try {
 				test = TestDAO.getOne(id);
 			} catch (SQLException e) {e.printStackTrace();}
 
 			request.setAttribute("test", test);
 			request.getRequestDispatcher("/CreerTest").forward(request, response);
-			
 			
 		}
 		

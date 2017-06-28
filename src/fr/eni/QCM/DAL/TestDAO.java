@@ -17,6 +17,7 @@ public class TestDAO {
 	static String SQL_DELETE = "DELETE FROM Test WHERE id = ?";
 	static String SQL_ADD = "INSERT INTO TEST VALUES(?, ?, ?, ?)";
 	static String SQL_GET_ONE_BY_LIBELLE = "SELECT * FROM Test WHERE libelle like ?";
+	static String SQL_UPDATE = "UPDATE Test SET libelle = ? , timer = ? , idTypeTest = ? WHERE id = ?";
 	
 	public static Test getOne(int id) throws SQLException {
 		Connection cnx = null;
@@ -149,5 +150,25 @@ public class TestDAO {
 			if (cnx!=null) cnx.close();
 		}
 		return test;
+	}
+
+	public static void update(int id, String libelle, int timer, int idTypeTest) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_UPDATE);
+			rqt.setString(1, libelle);
+			rqt.setInt(2, timer);
+			rqt.setInt(3, idTypeTest);
+			rqt.setInt(4, id);
+			rs = rqt.executeQuery();
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		
+		}
 	}
 }
