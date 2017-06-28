@@ -24,7 +24,7 @@ body {
 <%@ include file="../../menu/JSP_menuBar.jsp"%>
 
 <div class="col-md-2 col-md-offset-10">
-	<a href="<%=request.getContextPath() %>/SectionController" style="margin-top:1em" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un test</a>
+	<a href="<%=request.getContextPath() %>/test" style="margin-top:1em" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un test</a>
 </div>
 <div class="col-md-12">
 	<h1>Liste des tests : </h1>
