@@ -56,7 +56,7 @@ body {
 		</div>
 		<div class="text-center">
 		<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
-		<a href="#" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-arrow-right"></span>Suivant</a>
+		<a href="<%=request.getContextPath() %>/SectionController" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-arrow-right"></span>Suivant</a>
 		</div>
 	</form>
 </div>

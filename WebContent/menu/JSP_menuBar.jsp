@@ -36,7 +36,7 @@
 				<a class="navbar-brand text-center" style="color:white;padding-left:1em">Bienvenue <%=f.getPrenom() %> <%= f.getNom() %></a>
 				<div class="navbar-form navbar-right">
 				<div class="form-group">
-				<a class="btn btn-default form-control" href="<%=request.getContextPath()%>/ListeTest">Liste Test</a>
+				<a class="btn btn-default form-control" href="<%=request.getContextPath()%>/Test">Liste Test</a>
 				</div>
 				<div class="form-group">
 				<a class="btn btn-warning form-control" href="<%=request.getContextPath() %>/Connexion?deconnexion=1">Déconnexion</a>
