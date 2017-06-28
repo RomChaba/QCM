@@ -4,3 +4,4 @@ WebContent/menu/menuBar.jsp
 WebContent/WEB-INF/test/AjoutSectionTest.jsp
 WebContent/WEB-INF/test/CreerTest.jsp
 WebContent/WEB-INF/test/AjoutSectionTest.jsp
+*.class

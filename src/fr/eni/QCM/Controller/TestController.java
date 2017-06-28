@@ -12,7 +12,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.QCM.BO.Test;
+import fr.eni.QCM.BO.TypeTest;
 import fr.eni.QCM.DAL.TestDAO;
+import fr.eni.QCM.DAL.TypeTestDAO;
 
 /**
  * Servlet implementation class listTest
@@ -29,14 +31,35 @@ public class TestController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		response.setContentType("text/plain");
 		PrintWriter out = response.getWriter();
-		
-		// SUPPRESSION
+
+		// DELETE
 		if(request.getParameter("delete")!= null){
 			try {
 				TestDAO.delete(Integer.valueOf(request.getParameter("delete")));
-			} catch (NumberFormatException | SQLException e) {
-				e.printStackTrace();
-			}
+			} catch (NumberFormatException | SQLException e) {e.printStackTrace();}
+		}
+
+		// UPDATE
+		if(request.getParameter("update")!= null){
+			ArrayList<TypeTest> AllTypesTest = null;
+			
+			try {
+				AllTypesTest = TypeTestDAO.getAll();
+			} catch (SQLException e) {e.printStackTrace();}
+			
+			request.setAttribute("types", AllTypesTest);
+			
+			int id = Integer.valueOf(request.getParameter("update"));
+			Test test = null;
+			
+			try {
+				test = TestDAO.getOne(id);
+			} catch (SQLException e) {e.printStackTrace();}
+
+			request.setAttribute("test", test);
+			request.getRequestDispatcher("/CreerTest").forward(request, response);
+			
+			
 		}
 		
 		
@@ -44,9 +67,7 @@ public class TestController extends HttpServlet {
 		
 		try {
 			tests = TestDAO.getAll();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
+		} catch (SQLException e) {e.printStackTrace();}
 
 		request.setAttribute("tests", tests);
 		request.getRequestDispatcher("/ListeTest").forward(request, response);

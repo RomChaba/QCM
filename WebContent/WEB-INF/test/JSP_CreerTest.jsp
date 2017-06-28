@@ -1,5 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.eni.QCM.BO.TypeTest"%>
+<%@page import="fr.eni.QCM.BO.Test"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -25,41 +27,80 @@ body {
 
 <body>
 <%@ include file="../../menu/JSP_menuBar.jsp"%>
-<div class="col-md-12">
-<h1 class="text-center">Création d'un test </h1>
-<div class="col-md-offset-2 col-md-8 well">
+<%
+	Test leTest = (Test)request.getAttribute("test");
+	ArrayList<TypeTest> AllTypes = (ArrayList<TypeTest>)request.getAttribute("types");
+%>
 	
-	<form action="#" class="form-inline" method="POST">
-		<div class="creaTest form-group col-md-12">
-		<label class="col-md-4" for="nom">Nom : </label>
-		<input class="form-control" type="text" name="nom" id="nom" />
+	
+<div class="col-md-12">
+<%	if(leTest != null) { %>
+	<h1 class="text-center">Modification d'un test</h1>
+	<div class="col-md-offset-2 col-md-8 well">
+			<form action="" class="form-inline" method="POST">
+				<div class="creaTest form-group col-md-12">
+					<label class="col-md-4" for="nom">Nom : </label>
+					<input class="form-control" type="text" name="nom" id="nom" value="<%= leTest.getLibelle() %>"/>
+				</div>
+				<div class="creaTest form-group col-md-12">
+					<label class="col-md-4" for="timer">Timer : </label>
+					<span><input class="form-control" type="number" name="timermin" id="timermin" value="<%= leTest.getTimer() / 60 %>"/>&nbsp;minutes</span>
+					<span><input class="form-control" type="number" name="timersec" id="timersec" value="<%= leTest.getTimer() %>"/> secondes</span>
+				</div>
+				<div class="creaTest form-group col-md-12">
+					<label class="col-md-4" for="type">Type : </label>
+					<select name="type" id="type">
+		<%	
+			
+			if (AllTypes != null && !AllTypes.isEmpty()) {
+				for (TypeTest type : AllTypes) {
+		%>
+						<option value="<%= type.getId() %>"><%= type.getLibelle() %></option>	
+		<%		}
+			}
+			%>
+					</select>
+				</div>
+				<div class="text-center">
+					<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
+					<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder"/>
+				</div>
+			</form>
 		</div>
-		<div class="creaTest form-group col-md-12">
-		<label class="col-md-4" for="description">Description : </label>
-		<textarea class="form-control col-md-12" name="description" id="desc" rows="4"></textarea>
-		</div>
-		<div class="creaTest form-group col-md-12">
-		<label class="col-md-4" for="timer">Timer : </label>
-		<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbsp;minutes</span>
-		<span><input class="form-control" type="number" name="timersec" id="timersec" /> secondes</span>
-		</div>
-		<div class="creaTest form-group col-md-12">
-		<label class="col-md-4" for="nbMaxQuestion">Nombre de question maximum : </label>
-		<input class="form-control" type="number" name="nbMaxQuestion" id="nbMaxQuestion" />
-		</div>
-		<div class="creaTest form-group col-md-12">
-		<label class="col-md-4" for="type">Type : </label>
-		<select name="type" id="type">
-		<option value="1">ECF</option>
-		<option value="2">A COMPLÉTER AUTO</option>
-		</select>
-		</div>
-		<div class="text-center">
-		<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
-		<a href="<%=request.getContextPath() %>/SectionController" class="btn btn-success btn-lg"><span class="glyphicon glyphicon-arrow-right"></span>Suivant</a>
-		</div>
-	</form>
-</div>
+<%	} else { %>
+	<h1 class="text-center">Création d'un test</h1>
+	<div class="col-md-offset-2 col-md-8 well">
+		<form action="" class="form-inline" method="POST">
+			<div class="creaTest form-group col-md-12">
+				<label class="col-md-4" for="nom">Nom : </label>
+				<input class="form-control" type="text" name="nom" id="nom" />
+			</div>
+			<div class="creaTest form-group col-md-12">
+				<label class="col-md-4" for="timer">Timer : </label>
+				<span><input class="form-control" type="number" name="timermin" id="timermin" />&nbsp;minutes</span>
+				<span><input class="form-control" type="number" name="timersec" id="timersec" /> secondes</span>
+			</div>
+			<div class="creaTest form-group col-md-12">
+				<label class="col-md-4" for="type">Type : </label>
+				<select name="type" id="type">
+	<%	
+		
+		if (AllTypes != null && !AllTypes.isEmpty()) {
+			for (TypeTest type : AllTypes) {
+	%>
+					<option value="<%= type.getId() %>"><%= type.getLibelle() %></option>	
+	<%		}
+		}
+		%>
+				</select>
+			</div>
+			<div class="text-center">
+				<a style="margin-right:1em" href="#" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
+				<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder"/>
+			</div>
+		</form>
+	</div>
+<% } %>
 
 </div>		
 

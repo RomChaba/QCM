@@ -24,7 +24,7 @@ body {
 <%@ include file="../../menu/JSP_menuBar.jsp"%>
 
 <div class="col-md-2 col-md-offset-10">
-	<a href="<%=request.getContextPath() %>/CreerTest" style="margin-top:1em" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un test</a>
+	<a href="<%=request.getContextPath() %>/Test/Add" style="margin-top:1em" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer un test</a>
 </div>
 <div class="col-md-12">
 	<h1>Liste des tests : </h1>
@@ -51,7 +51,7 @@ body {
 			<td><%= test.getLibelle() %></td>
 			<td><%= test.getFormateur().getNom() + " " + test.getFormateur().getPrenom() %></td>
 			<td><%= test.getTypeTest().getLibelle() %></td>
-			<td><a class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span></a></td>
+			<td><a class='btn btn-primary' href="<%=request.getContextPath() %>/Test?update=<%= test.getId() %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
 			<td><a class='btn btn-primary'><span class='glyphicon glyphicon-user'></span></a></td>
 			<td><a class='btn btn-primary' href="<%=request.getContextPath() %>/Test?delete=<%= test.getId() %>"><span class='glyphicon glyphicon-remove'></span></a></td>			
 		</tr>		

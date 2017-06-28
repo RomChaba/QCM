@@ -12,9 +12,11 @@ import fr.eni.QCM.utils.AccesBase;
 
 public class TestDAO {
 
-	static String SQL_GET_ONE_TEST = "SELECT * FROM Test WHERE id = ?";
-	static String SQL_GET_ALL_TEST = "SELECT * FROM Test";
-	static String SQL_DELETE_ONE_TEST = "DELETE FROM Test WHERE id = ?";
+	static String SQL_GET_ONE = "SELECT * FROM Test WHERE id = ?";
+	static String SQL_GET_ALL = "SELECT * FROM Test";
+	static String SQL_DELETE = "DELETE FROM Test WHERE id = ?";
+	static String SQL_ADD = "INSERT INTO TEST VALUES(?, ?, ?, ?)";
+	static String SQL_GET_ONE_BY_LIBELLE = "SELECT * FROM Test WHERE libelle = ?";
 	
 	public static Test getOne(int id) throws SQLException {
 		Connection cnx = null;
@@ -23,8 +25,37 @@ public class TestDAO {
 		Test test = null;
 		try{
 			cnx = AccesBase.recupererConnexionJDBC();
-			rqt = cnx.prepareStatement(SQL_GET_ONE_TEST);
+			rqt = cnx.prepareStatement(SQL_GET_ONE);
 			rqt.setInt(1, id);
+			rs = rqt.executeQuery();
+			
+			while (rs.next()){
+				test = new Test(
+						rs.getInt("id"), 
+						rs.getString("libelle"), 
+						rs.getInt("timer"), 
+						FormateurDAO.getOne(rs.getInt("idFormateur")), 
+						TypeTestDAO.getOne(rs.getInt("idTypeTest"))
+						);
+			}
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		return test;
+	}
+	
+	public static Test getOneByLibelle(String libelle) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Test test = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_GET_ONE_BY_LIBELLE);
+			rqt.setString(1, libelle);
 			rs = rqt.executeQuery();
 			
 			while (rs.next()){
@@ -54,7 +85,7 @@ public class TestDAO {
 		try {
 			cnx = AccesBase.recupererConnexionJDBC();
 			rqt = cnx.createStatement();			
-			rs = rqt.executeQuery(SQL_GET_ALL_TEST);
+			rs = rqt.executeQuery(SQL_GET_ALL);
 			Test test;
 			
 			while (rs.next()){
@@ -84,7 +115,7 @@ public class TestDAO {
 		ResultSet rs = null;
 		try{
 			cnx = AccesBase.recupererConnexionJDBC();
-			rqt = cnx.prepareStatement(SQL_DELETE_ONE_TEST);
+			rqt = cnx.prepareStatement(SQL_DELETE);
 			rqt.setInt(1, id);
 			rs = rqt.executeQuery();
 			
@@ -94,5 +125,27 @@ public class TestDAO {
 			if (cnx!=null) cnx.close();
 		}
 		
+	}
+	
+	public static Test add(String libelle, int timer, int idFormateur, int idTypeTest) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		Test test = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_ADD);
+			rqt.setString(1, libelle);
+			rqt.setInt(2, timer);
+			rqt.setInt(3, idFormateur);
+			rqt.setInt(4, idTypeTest);
+			rs = rqt.executeQuery();
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		return test;
 	}
 }
