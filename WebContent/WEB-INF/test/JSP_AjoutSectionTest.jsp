@@ -38,7 +38,7 @@ body {
 	<p>Section du test : </p>
 	</div>
 	<div class="col-md-2">
-	<a href="" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer une nouvelle section</a>
+	<a href="<%=request.getContextPath()%>/CreerModifSection" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer une nouvelle section</a>
 	</div>
 	
 	
@@ -71,7 +71,9 @@ body {
 	<table class="table table-bordred table-striped">
 	<thead>
 		<th>Titre</th>
-		<th>Nb question</th>
+		<th class="text-center">Nb question</th>
+		<th class="text-center">Modifier</th>
+		<th class="text-center">Supprimer</th>
 		<th class="text-center">Ajouter</th>
 	</thead>
 	<tbody>
@@ -90,8 +92,11 @@ body {
 		%>
 		<tr>
 		<td><%= s.getLibelle() %></td>
-		<td><%= nbquestion %></td>		
+		<td class="text-center"><%= nbquestion %></td>
+		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?modifid=<%=s.getId() %>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>		
+		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?suppid=<%=s.getId() %>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
 		<td class="text-center"><a id="<%= s.getId() %>" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a></td>
+		
 		</tr>
 		<%
 	}

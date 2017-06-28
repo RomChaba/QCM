@@ -47,6 +47,15 @@
     <url-pattern>/AjoutSectionTest</url-pattern>
   </servlet-mapping>
   
+    <servlet>
+    <servlet-name>CreerModifSection</servlet-name>
+    <jsp-file>/WEB-INF/test/JSP_CreerSection.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerModifSection</servlet-name>
+    <url-pattern>/CreerModifSection</url-pattern>
+  </servlet-mapping>
+  
   
   <servlet>
     <servlet-name>index</servlet-name>
