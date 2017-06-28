@@ -1,3 +1,4 @@
+<%@page import="fr.eni.QCM.BO.Test"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
@@ -28,6 +29,10 @@ body {
 	padding-bottom:1em!important;
 }
 </style>
+<%
+Test t = (Test)request.getAttribute("test");
+
+%>
 
 <body>
 <%@ include file="../../menu/JSP_menuBar.jsp"%>
@@ -35,7 +40,7 @@ body {
 <p class="text-center"><i>Veuilliez choisir ou créer une section du test</i></h1>
 <div class="col-md-6">
 	<div class="col-md-6">
-	<p>Section du test : </p>
+	<p>Section du test <%= t.toString() %>: </p>
 	</div>
 	<div class="col-md-2">
 	<a href="<%=request.getContextPath()%>/CreerModifSection" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer une nouvelle section</a>

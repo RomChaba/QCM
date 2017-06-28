@@ -18,8 +18,10 @@ import javax.servlet.http.HttpSession;
 
 import fr.eni.QCM.BO.Formateur;
 import fr.eni.QCM.BO.Section;
+import fr.eni.QCM.BO.Test;
 import fr.eni.QCM.DAL.QuestionDAO;
 import fr.eni.QCM.DAL.SectionDAO;
+import fr.eni.QCM.DAL.TestDAO;
 
 /**
  * Servlet implementation class SectionController
@@ -102,6 +104,14 @@ public class SectionController extends HttpServlet {
 			System.out.println("Affchage sections");
 			ArrayList<Integer> nbquestion = new ArrayList<>();
 			Map<Section,Integer> secEtNbQue = new LinkedHashMap<>();
+			Test t = null;
+			try {
+				t = TestDAO.getOneByLibelle((String) request.getAttribute("nomTest"));
+			} catch (SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			request.setAttribute("test", t);
 			try {
 				ArrayList<Section> sections = SectionDAO.getAll();
 				for (Section section : sections) {
