@@ -1,7 +1,7 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<%@page import="fr.eni.QCM.BO.Formateur"%>
-<%@page import="fr.eni.QCM.BO.Candidat"%>
+<%@page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="fr.eni.QCM.BO.Test"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -30,21 +30,34 @@ body {
 	<h1>Liste des tests : </h1>
 	<table class="table table-bordred table-striped">
 	<thead>
-		<th>Titre</th>
-		<th>Nb question</th>
-		<th>Modifier</th>
-		<th>Stagiaire</th>
-		<th>Supprimer</th>
+		<tr>
+			<th>Titre</th>
+			<th>Créateur</th>
+			<th>Type</th>
+			<th>Modifier</th>
+			<th>Stagiaire</th>
+			<th>Supprimer</th>
+		</tr>
 	</thead>
 	<tbody>
 	<%-- Exemple a utiliser pour l'automatisation --%>
-	<tr>
-	<td>PHP</td>
-	<td>50</td>
-	<td><a class="btn btn-primary"><span class="glyphicon glyphicon-pencil"></span></a></td>
-	<td><a class="btn btn-primary"><span class="glyphicon glyphicon-user"></span></a></td>
-	<td><a class="btn btn-primary"><span class="glyphicon glyphicon-remove"></span></a></td>
-	</tr>
+	
+<%	ArrayList<Test> AllTests = (ArrayList<Test>)request.getAttribute("tests");
+	
+	if (AllTests != null && !AllTests.isEmpty()) {
+		for (Test test : AllTests) {
+%>
+		<tr>
+			<td><%= test.getLibelle() %></td>
+			<td><%= test.getFormateur().getNom() + " " + test.getFormateur().getPrenom() %></td>
+			<td><%= test.getTypeTest().getLibelle() %></td>
+			<td><a class='btn btn-primary'><span class='glyphicon glyphicon-pencil'></span></a></td>
+			<td><a class='btn btn-primary'><span class='glyphicon glyphicon-user'></span></a></td>
+			<td><a class='btn btn-primary' href="<%=request.getContextPath() %>/Test?delete=<%= test.getId() %>"><span class='glyphicon glyphicon-remove'></span></a></td>			
+		</tr>		
+<%		}
+	}
+	%>
 	</tbody>
 	</table>
 </div>		

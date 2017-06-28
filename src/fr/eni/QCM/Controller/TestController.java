@@ -17,7 +17,7 @@ import fr.eni.QCM.DAL.TestDAO;
 /**
  * Servlet implementation class listTest
  */
-@WebServlet("/listeTest")
+@WebServlet("/Test")
 public class TestController extends HttpServlet {
 
 	private static final long serialVersionUID = 1L;
@@ -27,8 +27,18 @@ public class TestController extends HttpServlet {
 	 */
 	@SuppressWarnings("unused")
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//response.setContentType("text/plain");
-		//PrintWriter out = response.getWriter();
+		response.setContentType("text/plain");
+		PrintWriter out = response.getWriter();
+		
+		// SUPPRESSION
+		if(request.getParameter("delete")!= null){
+			try {
+				TestDAO.delete(Integer.valueOf(request.getParameter("delete")));
+			} catch (NumberFormatException | SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		
 		
 		ArrayList<Test> tests = null;
 		

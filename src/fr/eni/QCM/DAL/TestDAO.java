@@ -14,6 +14,7 @@ public class TestDAO {
 
 	static String SQL_GET_ONE_TEST = "SELECT * FROM Test WHERE id = ?";
 	static String SQL_GET_ALL_TEST = "SELECT * FROM Test";
+	static String SQL_DELETE_ONE_TEST = "DELETE FROM Test WHERE id = ?";
 	
 	public static Test getOne(int id) throws SQLException {
 		Connection cnx = null;
@@ -57,12 +58,13 @@ public class TestDAO {
 			Test test;
 			
 			while (rs.next()){
-				test = new Test();
-					test.setId(rs.getInt("id"));
-					test.setLibelle(rs.getString("libelle"));
-					test.setTimer(rs.getInt("timer"));
-					test.setFormateur(FormateurDAO.getOne(rs.getInt("idFormateur")));
-					test.setTypeTest(TypeTestDAO.getOne(rs.getInt("idTypeTest")));
+				test = new Test(
+							rs.getInt("id"), 
+							rs.getString("libelle"), 
+							rs.getInt("timer"), 
+							FormateurDAO.getOne(rs.getInt("idFormateur")), 
+							TypeTestDAO.getOne(rs.getInt("idTypeTest"))
+						);
 					
 				tests.add(test);
 			}
@@ -74,5 +76,23 @@ public class TestDAO {
 		}
 		
 		return tests;
+	}
+
+	public static void delete(int id) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_DELETE_ONE_TEST);
+			rqt.setInt(1, id);
+			rs = rqt.executeQuery();
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		
 	}
 }
