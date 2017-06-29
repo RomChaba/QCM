@@ -29,22 +29,40 @@
 					<label class="col-md-3" for="nom">Question : </label>
 					<textarea class="col-md-9" rows="2" name="libelle"></textarea>
 				</div>
-				
+			
 				<!-- TYPE -->
 				<div class="creaTest form-group col-md-12">
 					<label class="col-md-3" for="nom">Type : </label>
 					<label class="col-md-1"></label>
 					<label class="col-md-1">QCU</label>
-					<input class="col-md-1" type="radio" value="1">
+					<input class="col-md-1" name="type" type="radio" value="1">
 					<label class="col-md-2"></label>
 					<label class="col-md-1">QCM</label>
-					<input class="col-md-1" type="radio" value="2">
+					<input class="col-md-1" name="type" type="radio" value="2">
 				</div>
 				
 				<!-- Réponses -->
+				<div class="creaTest form-group col-md-12">
+				<label class="col-md-3" for="nom">Réponses : </label>
+					<table class="table table-bordred table-striped">
+						<tbody>
+							<tr>
+								<td><span class='glyphicon glyphicon-ok green'></span></td>
+								<td>Hypertexte Processor</td>
+								<td><a class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a></td>
+								<td><a class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span></a></td>			
+							</tr>
+							<tr>
+								<td><span class='glyphicon glyphicon-remove red'></span></td>
+								<td>reponse 2</td>
+								<td><a class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a></td>
+								<td><a class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span></a></td>			
+							</tr>	
+						</tbody>
+					</table>
+				</div>
 				
-				
-				
+				<!-- Type de Question -->
 				
 				
 				
@@ -70,6 +88,21 @@
 	}
 	
 	.creaTest{
-		padding-bottom:1em!important;
+		padding-bottom:2em!important;
+		margin-bottom:2em!important;
+		border-bottom: 1px solid #AAA;
+	}
+	
+	textarea {
+		max-width: 75%;
+		max-height: 200px;
+	}
+	
+	.green {
+		color: #5cb85c;
+	}
+	
+	.red {
+	 	color: #d9534f;
 	}
 </style>
