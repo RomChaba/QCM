@@ -1,3 +1,4 @@
+<%@page import="fr.eni.QCM.BO.Question"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.Set"%>
 <%@page import="java.util.Map"%>
@@ -27,6 +28,14 @@ body {
 .creaTest{
 	padding-bottom:1em!important;
 }
+	
+	.green {
+		color: #5cb85c;
+	}
+	
+	.red {
+	 	color: #d9534f;
+	}
 </style>
 
 <body>
@@ -67,12 +76,41 @@ if(request.getAttribute("section")!=null){
 <button type="submit" class="btn btn-success form-control" ><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Valider</button>
 </form>
 </div>
+<br><br>
+
+<%
+if(request.getAttribute("section")!=null){
+	Section s = (Section)request.getAttribute("section");
+
+	ArrayList<Question> LesQuestions = (ArrayList<Question>)request.getAttribute("LesQuestions");
+%>
+		<div class="col-md-6" style="margin: 0 auto; float: none">
+		<h2 style="float: left;">Liste des Questions : </h2>
+		<a href="./Question?section=<%= s.getId() %>" style="float: right;" class="btn btn-primary">
+			<span class="glyphicon glyphicon-plus"></span>
+			Aj	outer une Question
+		</a>
+		<table class="table table-bordred table-striped">
+		<tbody>
+			<%
+			if (LesQuestions != null && !LesQuestions.isEmpty()) {
+				for (Question q : LesQuestions) { %>
+					<tr>
+						<td><%= q.getLibelle() %></td>
+						<td style="width: 30px"><a href="<%=request.getContextPath() %>/Question?update=<%= q.getId() %>" class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a></td>
+						<td style="width: 30px"><a href="<%=request.getContextPath() %>/Question?delete=<%= q.getId() %>" class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span></a></td>			
+					</tr>
+				<% }
+			}%>
+	</tbody>
+	</table>
+</div>	
 	
 </div>
 <div class="text-center">
 <a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Annuler</a>
 <a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Retour</a>
 </div>		
-
+<% } %>
 </body>
 </html>

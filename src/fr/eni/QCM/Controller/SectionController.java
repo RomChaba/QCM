@@ -16,7 +16,10 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.glassfish.jersey.server.internal.process.RespondingContext;
+
 import fr.eni.QCM.BO.Formateur;
+import fr.eni.QCM.BO.Question;
 import fr.eni.QCM.BO.Section;
 import fr.eni.QCM.BO.Test;
 import fr.eni.QCM.DAL.QuestionDAO;
@@ -48,13 +51,14 @@ public class SectionController extends HttpServlet {
 		if(request.getParameter("modif") != null){
 			int id = Integer.valueOf(request.getParameter("modif"));
 			String libelle =request.getParameter("libelle");
-			
+						
 			try {
 				SectionDAO.modifLibelle(id, libelle);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			response.sendRedirect("./SectionController");
 		}else if(request.getParameter("selectDel") != null){
 			
@@ -85,9 +89,14 @@ public class SectionController extends HttpServlet {
 			
 			
 		}else if(request.getParameter("modifid") != null){
-			
-			
+
 			int idSection =Integer.valueOf(request.getParameter("modifid"));
+			
+			ArrayList<Question> LesQuestions = new ArrayList<Question>();
+			try {
+				LesQuestions = QuestionDAO.getQuestionForSection(idSection);
+			} catch (SQLException e1) {e1.printStackTrace();}
+			request.setAttribute("LesQuestions", LesQuestions);
 			
 			try {
 				Section s = SectionDAO.getOne(idSection);

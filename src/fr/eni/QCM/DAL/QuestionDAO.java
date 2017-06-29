@@ -4,6 +4,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 import fr.eni.QCM.BO.Question;
 import fr.eni.QCM.utils.AccesBase;
@@ -12,6 +13,8 @@ public class QuestionDAO {
 
 	static String SQL_GET_ONE_QUESTION = "SELECT * FROM Question WHERE id = ?";
 	static String SQL_GET_NB_PAR_SECTION = "SELECT COUNT(*) nb FROM Question where idSection = ?";
+	static String SQL_GET_QUESTION_FOR_SECTION = "SELECT * FROM Question WHERE idSection = ?";
+	static String SQL_DELETE = "DELETE FROM Question WHERE id = ?";
 	 
 	
 	public static Question getOne(int id) throws SQLException {
@@ -65,5 +68,53 @@ public class QuestionDAO {
 			if (cnx!=null) cnx.close();
 		}
 		return nb;
+	}
+	
+	public static ArrayList<Question> getQuestionForSection(int idSection) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		ArrayList<Question> questions = new ArrayList<Question>();
+		Question question = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_GET_QUESTION_FOR_SECTION);
+			rqt.setInt(1, idSection);
+			rs = rqt.executeQuery();
+			
+			while (rs.next()){
+				question = new Question(
+								rs.getInt("id"), 
+								rs.getString("libelle"), 
+								rs.getString("image"), 
+								SectionDAO.getOne(rs.getInt("idSection")), 
+								TypeQuestionDAO.getOne(rs.getInt("idTypeQuestion"))
+						);
+				questions.add(question);
+			}
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+		return questions;
+	}
+	public static void delete(int idQuestion) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_DELETE);
+			rqt.setInt(1, idQuestion);
+			rs = rqt.executeQuery();		
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		
+	}
 	}
 }

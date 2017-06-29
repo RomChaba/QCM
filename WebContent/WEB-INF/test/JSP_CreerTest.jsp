@@ -64,7 +64,7 @@ body {
 				</div>
 				<div class="creaTest form-group col-md-12">
 					<label class="col-md-4" for="type">Type : </label>
-					<select name="type" id="type">
+					<select name="type" id="type" class="form-control">
 <%						if (AllTypes != null && !AllTypes.isEmpty()) {
 							for (TypeTest type : AllTypes) {
 %>

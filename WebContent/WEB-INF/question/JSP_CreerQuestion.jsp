@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
-<%@page import="fr.eni.QCM.BO.TypeTest"%>
-<%@page import="fr.eni.QCM.BO.Test"%>
+<%@page import="fr.eni.QCM.BO.Section"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 	<head>
@@ -44,6 +43,10 @@
 				<!-- Réponses -->
 				<div class="creaTest form-group col-md-12">
 				<label class="col-md-3" for="nom">Réponses : </label>
+				<a href="" style="float: right; margin-bottom: 1em;" class="btn btn-primary">
+					<span class="glyphicon glyphicon-plus"></span>
+					Ajouter une réponse
+				</a>
 					<table class="table table-bordred table-striped">
 						<tbody>
 							<tr>
@@ -63,7 +66,27 @@
 				</div>
 				
 				<!-- Type de Question -->
-				
+				<%
+					ArrayList<Section> AllSections = (ArrayList<Section>)request.getAttribute("LesSections");
+					Section maSection = (Section)request.getAttribute("maSection");
+				%>
+				<div class="creaTest form-group col-md-12">
+					<label class="col-md-4" for="type">Type : </label>
+					<select name="type" id="type" class="form-control">
+<%						if (AllSections != null && !AllSections.isEmpty()) {
+							for (Section s : AllSections) {
+%>
+								<option
+								<%	if(s.id == maSection.getId()){	%>
+										selected="selected"
+								<%	} %>
+								>
+									<%= s.getLibelle() %>
+								</option>	
+<%							}
+						}
+%>					</select>
+				</div>
 				
 				
 				
