@@ -63,7 +63,7 @@ ArrayList<Proposition> lesPropositions = (ArrayList<Proposition>)request.getAttr
 					<!-- Réponses -->
 					<div class="creaTest form-group col-md-12">
 					<label class="col-md-3" for="nom">Réponses : </label>
-					<a href="/Reponse?idQuestion=<%= maQuestion.getId() %>" style="float: right; margin-bottom: 1em;" class="btn btn-primary">
+					<a href="<%=request.getContextPath() %>/Reponse?idQuestion=<%= maQuestion.getId() %>" style="float: right; margin-bottom: 1em;" class="btn btn-primary">
 						<span class="glyphicon glyphicon-plus"></span>
 						Ajouter une réponse
 					</a>
