@@ -65,6 +65,14 @@
     <servlet-name>CreerQuestion</servlet-name>
     <url-pattern>/CreerQuestion</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>CreerReponse</servlet-name>
+    <jsp-file>/WEB-INF/reponse/JSP_CreerReponse.jsp</jsp-file>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>CreerReponse</servlet-name>
+    <url-pattern>/CreerReponse</url-pattern>
+  </servlet-mapping>
   
   
   <servlet>
