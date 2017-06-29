@@ -15,6 +15,7 @@ public class QuestionDAO {
 	static String SQL_GET_NB_PAR_SECTION = "SELECT COUNT(*) nb FROM Question where idSection = ?";
 	static String SQL_GET_QUESTION_FOR_SECTION = "SELECT * FROM Question WHERE idSection = ?";
 	static String SQL_DELETE = "DELETE FROM Question WHERE id = ?";
+	static String SQL_UPDATE = "UPDATE Question SET libelle = ?, idTypeQuestion = ?, idSection = ? WHERE id = ?";
 	 
 	
 	public static Question getOne(int id) throws SQLException {
@@ -115,6 +116,28 @@ public class QuestionDAO {
 			if (rqt!=null) rqt.close();
 			if (cnx!=null) cnx.close();
 		
+		}
 	}
+	public static void update(String libelle, int type, int idSection, int idQuestion) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_UPDATE);
+			rqt.setString(1, libelle);
+			rqt.setInt(2, type);
+			rqt.setInt(3, idSection);
+			rqt.setInt(4, idQuestion);
+			rs = rqt.executeQuery();
+			
+		} catch (Exception e) {
+			System.out.println(e);
+			
+		}finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
 	}
 }

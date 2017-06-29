@@ -88,7 +88,7 @@ if(request.getAttribute("section")!=null){
 		<h2 style="float: left;">Liste des Questions : </h2>
 		<a href="./Question?section=<%= s.getId() %>" style="float: right;" class="btn btn-primary">
 			<span class="glyphicon glyphicon-plus"></span>
-			Aj	outer une Question
+			Ajouter une Question
 		</a>
 		<table class="table table-bordred table-striped">
 		<tbody>
@@ -97,7 +97,7 @@ if(request.getAttribute("section")!=null){
 				for (Question q : LesQuestions) { %>
 					<tr>
 						<td><%= q.getLibelle() %></td>
-						<td style="width: 30px"><a href="<%=request.getContextPath() %>/Question?update=<%= q.getId() %>" class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a></td>
+						<td style="width: 30px"><a href="<%=request.getContextPath() %>/Question?update=<%= q.getId() %>&section=<%= q.getSection().getId() %>" class='btn btn-warning'><span class='glyphicon glyphicon-pencil'></span></a></td>
 						<td style="width: 30px"><a href="<%=request.getContextPath() %>/Question?delete=<%= q.getId() %>" class='btn btn-danger'><span class='glyphicon glyphicon-remove'></span></a></td>			
 					</tr>
 				<% }

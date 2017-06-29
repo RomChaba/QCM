@@ -55,11 +55,11 @@ body {
 				<div class="creaTest form-group col-md-12">
 					<label class="col-md-4" for="timer">Timer : </label>
 					<%	if(leTest != null) { %>
-						<span><input class="form-control" type="number" name="timermin" id="timermin" min="0" max="60" value="<%= leTest.getTimer() / 60 %>"/>&nbsp;minutes</span>
-						<span><input class="form-control" type="number" name="timersec" id="timersec" min="0"  max="60" value="<%= leTest.getTimer() % 60 %>"/> secondes</span>
+						<span><input class="form-control" type="number" name="timermin" id="timermin" min="0" value="<%= leTest.getTimer() / 60 %>"/>&nbsp;minutes</span>
+						<span><input class="form-control" type="number" name="timersec" id="timersec" min="0"  value="<%= leTest.getTimer() % 60 %>"/> secondes</span>
 					<%	} else { %>
-						<span><input class="form-control" type="number" name="timermin" id="timermin" min="0"  max="60" value="0" />&nbsp;minutes</span>
-						<span><input class="form-control" type="number" name="timersec" id="timersec" min="0"  max="60" value="0" /> secondes</span>
+						<span><input class="form-control" type="number" name="timermin" id="timermin" min="0"  value="0" />&nbsp;minutes</span>
+						<span><input class="form-control" type="number" name="timersec" id="timersec" min="0"  value="0" /> secondes</span>
 					<% 	} %>
 				</div>
 				<div class="creaTest form-group col-md-12">
