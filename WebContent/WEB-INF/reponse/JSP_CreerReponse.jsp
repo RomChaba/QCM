@@ -1,3 +1,4 @@
+<%@page import="fr.eni.QCM.BO.Question"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="fr.eni.QCM.BO.TypeTest"%>
@@ -22,6 +23,9 @@
 		
 		
 		<div class="col-md-offset-2 col-md-8 well">
+		<%
+		Question q = (Question)request.getAttribute("question");
+		%>
 		<h3>Question : <i style="color:red"><b>AJOUTER LE LIBELLE DE LA QUESTION</b></i></h3>
 			<form action="./Test/Add" class="form-inline" method="POST">
 				<div class="col-md-12 form-group">
