@@ -56,6 +56,20 @@ public class SectionController extends HttpServlet {
 				e.printStackTrace();
 			}
 			response.sendRedirect("./SectionController");
+		}else if(request.getParameter("selectDel") != null){
+			
+			int idTest = Integer.valueOf(request.getParameter("idTest"));
+			int idSection =Integer.valueOf(request.getParameter("selectDel"));
+			
+			try {
+				SectionDAO.deleteSectionSeletec(idSection, idTest);
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.sendRedirect("./SectionController");
+			
+			
 		}else if(request.getParameter("add") != null){
 			
 			int idFormateur = f.getId();
@@ -99,21 +113,55 @@ public class SectionController extends HttpServlet {
 			response.sendRedirect("./SectionController");
 			
 			
-		}else{
-			
-			ArrayList<Integer> nbquestion = new ArrayList<>();
-			Map<Section,Integer> secEtNbQue = new LinkedHashMap<>();
+		}else if(request.getParameter("addid") != null){
 			Test t = null;
+			System.out.println("Valeur de getParameter(\"nomTest\") dans addid : ");
+			System.out.println((String) request.getParameter("nomTest"));
+			
 			
 			try {
-				t = TestDAO.getOneByLibelle((String) request.getAttribute("nomTest"));
+				t = TestDAO.getOneByLibelle((String) request.getParameter("nomTest"));
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
 			request.setAttribute("test", t);
+			int idSection = Integer.valueOf(request.getParameter("addid"));
+			int idTest = Integer.valueOf(request.getParameter("idtest"));
+			
 			try {
-				ArrayList<Section> sections = SectionDAO.getAll();
+				SectionDAO.linkTestSection(idTest, idSection);;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			response.sendRedirect("./SectionController");
+			
+			
+		}else{
+			
+			ArrayList<Integer> nbquestion = new ArrayList<>();
+			Map<Section,Integer> secEtNbQue = new LinkedHashMap<>();
+			Test t = null;
+			System.out.println("valeur de getAttribute(nomTest) : ");
+			System.out.println((String) request.getAttribute("nomTest"));
+			
+			if(request.getAttribute("nomTest") != null){
+				try {
+					t = TestDAO.getOneByLibelle((String) request.getAttribute("nomTest"));
+					userSession.setAttribute("test", t);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}else{
+				t = (Test) userSession.getAttribute("test");
+			}
+			
+
+			
+			try {
+				ArrayList<Section> sections = SectionDAO.getNotSelectedForId(t.getId());
 				for (Section section : sections) {
 					secEtNbQue.put(section, QuestionDAO.getNbParSection(section.getId()));
 				}
@@ -123,6 +171,33 @@ public class SectionController extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			} 
+			
+			
+			//Partie pour les sections du test
+			try {
+				ArrayList<Integer> sectionsDuTest = new ArrayList<>();
+				Map<Section,Integer> secTestEtNbQue = new LinkedHashMap<>();
+				
+				System.out.println("valeur de id : ");
+				System.out.println(t.getId());
+				
+				
+				sectionsDuTest = SectionDAO.getAllForId(t.getId());
+				
+				ArrayList<Section> sections = new ArrayList<>();
+				
+				for (Integer id : sectionsDuTest) {
+					secTestEtNbQue.put(SectionDAO.getOne(id), QuestionDAO.getNbParSection(id));
+				}
+				request.setAttribute("sectionTest", secTestEtNbQue);
+				
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
+			
+			
 			
 			request.getRequestDispatcher("/AjoutSectionTest").forward(request, response);		
 			//response.getWriter().append("Served at: ").append(request.getContextPath());

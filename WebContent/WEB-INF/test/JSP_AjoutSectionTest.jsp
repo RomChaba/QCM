@@ -30,7 +30,7 @@ body {
 }
 </style>
 <%
-Test t = (Test)request.getAttribute("test");
+Test t = (Test)session.getAttribute("test");
 
 %>
 
@@ -56,13 +56,40 @@ Test t = (Test)request.getAttribute("test");
 		<th class="text-center">Supprimer</th>
 	</thead>
 	<tbody>
+		<%
+	Map<Section,Integer> sectionTest = (Map<Section,Integer>)request.getAttribute("sectionTest");
+	
+	Set<Section> sectioncles = sectionTest.keySet();
+	
+	Iterator sectionit = sectioncles.iterator();
+	
+	while(sectionit.hasNext()){
+		Section s1 = (Section)sectionit.next();
+		int nbquestion = sectionTest.get(s1);
+		
+		%>
+		<tr>
+			<td><%= s1.getLibelle() %></td>
+			<td class="text-center"><%= nbquestion %></td>
+			<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?modifid=<%=s1.getId() %>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>		
+			<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?selectDel=<%=s1.getId()%>&idTest=<%=t.getId()%>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+		</tr>
+		<%
+	}
+	%>
+	
+	
+	
+	
 	<%-- Exemple a utiliser pour l'automatisation --%>
+	 <!--
 	<tr>
 	<td>Diag de Classe</td>
 	<td class="text-center">50</td>
 	<td class="text-center"><a class="btn btn-default"><span class="glyphicon glyphicon-pencil"></span></a></td>
 	<td class="text-center"><a class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a></td>
 	</tr>
+	-->
 	</tbody>
 	</table>
 	
@@ -100,7 +127,7 @@ Test t = (Test)request.getAttribute("test");
 		<td class="text-center"><%= nbquestion %></td>
 		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?modifid=<%=s.getId() %>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>		
 		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?suppid=<%=s.getId() %>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
-		<td class="text-center"><a id="<%= s.getId() %>" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a></td>
+		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?addid=<%=s.getId() %>&idtest=<%= t.getId()%>&nomTest=<%= t.getLibelle()%>" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a></td>
 		
 		</tr>
 		<%
