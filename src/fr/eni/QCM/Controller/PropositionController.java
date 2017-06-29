@@ -12,9 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import fr.eni.QCM.BO.Proposition;
+import fr.eni.QCM.BO.Question;
 import fr.eni.QCM.BO.Test;
 import fr.eni.QCM.BO.TypeTest;
 import fr.eni.QCM.DAL.PropositionDAO;
+import fr.eni.QCM.DAL.QuestionDAO;
 import fr.eni.QCM.DAL.TestDAO;
 import fr.eni.QCM.DAL.TypeTestDAO;
 
@@ -46,7 +48,7 @@ public class PropositionController extends HttpServlet {
 				PropositionDAO.creerPropo(libelle, reponse, idQuestion);
 			} catch (SQLException e) {e.printStackTrace();}
 			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-			request.getRequestDispatcher("/Home").forward(request, response);
+			request.getRequestDispatcher("./Question?section=1").forward(request, response);
 			
 		}
 		//DELETE
@@ -56,7 +58,7 @@ public class PropositionController extends HttpServlet {
 				PropositionDAO.delPropo(idProp);
 			} catch (SQLException e) {e.printStackTrace();}
 			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-			response.sendRedirect("/Home");
+			response.sendRedirect("./Question?section=1");
 		}
 		
 		//UPDATE
@@ -68,15 +70,21 @@ public class PropositionController extends HttpServlet {
 				PropositionDAO.updatePropo(libelle, reponse, idPropo);
 			} catch (SQLException e) {e.printStackTrace();}
 			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-			response.sendRedirect("/Home");
+			response.sendRedirect("./Question?section=1");
 		}
 		//TOTAL
 		else{
 			try {
-				request.setAttribute("proposition", PropositionDAO.getOne(7));
+				
+				Question q = QuestionDAO.getOne(Integer.valueOf(request.getParameter("idQuestion")));
+				request.setAttribute("question", q);
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
+			}
+			
+			if (request.getParameter("idProp") != null){
+				request.setAttribute("proposition", Integer.valueOf(request.getParameter("idProp")));
 			}
 			
 			request.getRequestDispatcher("/CreerReponse").forward(request, response);

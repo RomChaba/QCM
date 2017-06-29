@@ -15,7 +15,7 @@ public class PropositionDAO {
 	static String SQL_GET_ALL = "SELECT * FROM Proposition";
 	static String SQL_GET_ALL_FOR_QUESTION = "SELECT * FROM Proposition WHERE idQuestion = ?";
 	static String SQL_INSERT_PROPO = "INSERT INTO Proposition (libelle,reponse,idQuestion) VALUES (?,?,?)";
-	static String SQL_UPDATE_PROPO = "UPDATE Proposition SET libelle = ? AND reponse = ? WHERE id = ?";
+	static String SQL_UPDATE_PROPO = "UPDATE Proposition SET libelle = ? , reponse = ? WHERE id = ?";
 	static String SQL_DELETE_PROPO = "DELETE FROM Proposition WHERE id = ?";
 	
 	
@@ -85,6 +85,7 @@ public class PropositionDAO {
 		try{
 			cnx = AccesBase.recupererConnexionJDBC();
 			rqt = cnx.prepareStatement(SQL_GET_ALL_FOR_QUESTION);
+			rqt.setInt(1, idQuestion);
 			rs = rqt.executeQuery();
 			
 			while (rs.next()){
@@ -154,7 +155,7 @@ public class PropositionDAO {
 		}
 	}
 	
-	//Insert d'une nouvelle Proposition
+	//UPDATE d'une Proposition
 		public static void updatePropo(String libelle,int reponse,int idPropo) throws SQLException {
 			Connection cnx = null;
 			PreparedStatement rqt = null;
@@ -162,7 +163,7 @@ public class PropositionDAO {
 			try{
 				cnx = AccesBase.recupererConnexionJDBC();
 				rqt = cnx.prepareStatement(SQL_UPDATE_PROPO);
-				
+				//SET libelle = ? , reponse = ? WHERE id = ?
 				rqt.setString(1, libelle);
 				rqt.setInt(2, reponse);
 				rqt.setInt(3, idPropo);
