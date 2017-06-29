@@ -15,6 +15,9 @@ public class PropositionDAO {
 	static String SQL_GET_ALL = "SELECT * FROM Proposition";
 	static String SQL_GET_ALL_FOR_QUESTION = "SELECT * FROM Proposition WHERE idQuestion = ?";
 	static String SQL_INSERT_PROPO = "INSERT INTO Proposition (libelle,reponse,idQuestion) VALUES (?,?,?)";
+	static String SQL_UPDATE_PROPO = "UPDATE Proposition SET libelle = ? AND reponse = ? WHERE id = ?";
+	static String SQL_DELETE_PROPO = "DELETE FROM Proposition WHERE id = ?";
+	
 	
 	
 	public static Proposition getOne(int id) throws SQLException {
@@ -33,10 +36,13 @@ public class PropositionDAO {
 								rs.getInt("id"), 
 								rs.getString("libelle"), 
 								rs.getBoolean("reponse"), 
-								QuestionDAO.getOne(rs.getInt("question"))
+								QuestionDAO.getOne(rs.getInt("idQuestion"))
 						);
 			}
 			
+		}catch(Exception e){
+			System.out.println("PROPOSITIONDAO FONCTION : getOne");
+			System.out.println(e);
 		}finally{
 			if (rs!=null) rs.close();
 			if (rqt!=null) rqt.close();
@@ -123,5 +129,59 @@ public class PropositionDAO {
 			if (cnx!=null) cnx.close();
 		}
 	}
+
+	
+	//DELETE d'une Proposition
+	public static void delPropo(int idProp) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_DELETE_PROPO);
+			rqt.setInt(1, idProp);
+			rs = rqt.executeQuery();
+			
+			
+		}catch(Exception e){
+			System.out.println("PROPOSITIONDAO FONCTION : delPropo");
+			System.out.println(e);
+		}
+		finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+	}
+	
+	//Insert d'une nouvelle Proposition
+		public static void updatePropo(String libelle,int reponse,int idPropo) throws SQLException {
+			Connection cnx = null;
+			PreparedStatement rqt = null;
+			ResultSet rs = null;
+			try{
+				cnx = AccesBase.recupererConnexionJDBC();
+				rqt = cnx.prepareStatement(SQL_UPDATE_PROPO);
+				
+				rqt.setString(1, libelle);
+				rqt.setInt(2, reponse);
+				rqt.setInt(3, idPropo);
+				rs = rqt.executeQuery();
+				
+				
+			}catch(Exception e){
+				System.out.println("PROPOSITIONDAO FONCTION : updatePropo");
+				System.out.println(e);
+			}
+			finally{
+				if (rs!=null) rs.close();
+				if (rqt!=null) rqt.close();
+				if (cnx!=null) cnx.close();
+			}
+		}
+	
 	
 }
+
+//updatePropo
+

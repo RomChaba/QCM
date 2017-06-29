@@ -32,6 +32,17 @@
 		}
 		%>
 		<h3>Question : A CHANGER<%--<%= q.getLibelle() --%></h3>
+		<%
+		if(request.getAttribute("proposition") != null){
+			%>
+			<form action="./Reponse?updProp=<%--<%= p.getId() %>--%>" class="form-inline" method="POST">
+			<%
+		}else{
+			%>
+			<form action="./Reponse?addProp=<%--<%= q.getId() %>--%>" class="form-inline" method="POST">
+			<%
+		}
+		%>
 			<form action="./Reponse?addProp=<%--<%= q.getId() %>--%>" class="form-inline" method="POST">
 				<div class="col-md-12 form-group">
 					<label class="col-md-3" for="libelle">Libelle de la réponse : </label>

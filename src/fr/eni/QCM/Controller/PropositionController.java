@@ -45,14 +45,40 @@ public class PropositionController extends HttpServlet {
 			try {
 				PropositionDAO.creerPropo(libelle, reponse, idQuestion);
 			} catch (SQLException e) {e.printStackTrace();}
+			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
 			request.getRequestDispatcher("/Home").forward(request, response);
 			
 		}
-		
 		//DELETE
+		else if(request.getParameter("delProp") != null){
+			int idProp = Integer.valueOf(request.getParameter("delProp"));
+			try {
+				PropositionDAO.delPropo(idProp);
+			} catch (SQLException e) {e.printStackTrace();}
+			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
+			response.sendRedirect("/Home");
+		}
+		
 		//UPDATE
+		else if(request.getParameter("updProp") != null){
+			String libelle = request.getParameter("libelle");
+			int reponse = Integer.valueOf(request.getParameter("verite"));
+			int idPropo = Integer.valueOf(request.getParameter("updProp"));
+			try {
+				PropositionDAO.updatePropo(libelle, reponse, idPropo);
+			} catch (SQLException e) {e.printStackTrace();}
+			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
+			response.sendRedirect("/Home");
+		}
 		//TOTAL
 		else{
+			try {
+				request.setAttribute("proposition", PropositionDAO.getOne(7));
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			
 			request.getRequestDispatcher("/CreerReponse").forward(request, response);
 		}
 	}
