@@ -48,29 +48,69 @@ public class PropositionController extends HttpServlet {
 				PropositionDAO.creerPropo(libelle, reponse, idQuestion);
 			} catch (SQLException e) {e.printStackTrace();}
 			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-			request.getRequestDispatcher("./Question?section=1").forward(request, response);
+			
+			
+			int idSectionADD = 0;
+			try {
+				
+				idSectionADD = QuestionDAO.getOne(idQuestion).getSection().getId();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String s = "./Question?update="+idQuestion+"&section="+idSectionADD;
+			
+			request.getRequestDispatcher(s).forward(request, response);
 			
 		}
 		//DELETE
 		else if(request.getParameter("delProp") != null){
+			System.out.println("ENTRER DANS LA PARTIE delProp");
 			int idProp = Integer.valueOf(request.getParameter("delProp"));
+			
+			int idQuestionDEL = 0;
+			int idSectionDEL = 0;
+			
+			
 			try {
+				idQuestionDEL = PropositionDAO.getOne(idProp).getQuestion().getId();
+				idSectionDEL = QuestionDAO.getOne(idQuestionDEL).getSection().getId();
 				PropositionDAO.delPropo(idProp);
 			} catch (SQLException e) {e.printStackTrace();}
 			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-			response.sendRedirect("./Question?section=1");
+
+			String s = "./Question?update="+idQuestionDEL+"&section="+idSectionDEL;
+			System.out.println("LIEN DE LA REDIRECTION : "+s);
+			response.sendRedirect(s);
 		}
 		
 		//UPDATE
 		else if(request.getParameter("updProp") != null){
+			System.out.println("ENTRER DANS UPDATE");
 			String libelle = request.getParameter("libelle");
+			System.out.println("Valeur de libelle");
+			System.out.println(libelle);
 			int reponse = Integer.valueOf(request.getParameter("verite"));
+			
+			
 			int idPropo = Integer.valueOf(request.getParameter("updProp"));
+			
 			try {
 				PropositionDAO.updatePropo(libelle, reponse, idPropo);
 			} catch (SQLException e) {e.printStackTrace();}
 			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-			response.sendRedirect("./Question?section=1");
+			int idQuestion = 0;
+			int idSection = 0;
+			try {
+				idQuestion = PropositionDAO.getOne(idPropo).getQuestion().getId();
+				idSection = QuestionDAO.getOne(idQuestion).getSection().getId();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			String s = "./Question?update="+idQuestion+"&section="+idSection;
+			
+			response.sendRedirect(s);
 		}
 		//TOTAL
 		else{
@@ -84,7 +124,15 @@ public class PropositionController extends HttpServlet {
 			}
 			
 			if (request.getParameter("idProp") != null){
-				request.setAttribute("proposition", Integer.valueOf(request.getParameter("idProp")));
+				try {
+					request.setAttribute("proposition", PropositionDAO.getOne(Integer.valueOf(request.getParameter("idProp"))));
+				} catch (NumberFormatException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 			
 			request.getRequestDispatcher("/CreerReponse").forward(request, response);
