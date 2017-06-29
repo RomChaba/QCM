@@ -1,3 +1,4 @@
+<%@page import="fr.eni.QCM.BO.Proposition"%>
 <%@page import="fr.eni.QCM.BO.Question"%>
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="ISO-8859-1"%>
 <%@page import="java.util.ArrayList"%>
@@ -25,24 +26,74 @@
 		<div class="col-md-offset-2 col-md-8 well">
 		<%
 		Question q = (Question)request.getAttribute("question");
+		Proposition p = null;
+		if (request.getAttribute("proposition") != null){
+			p = (Proposition)request.getAttribute("proposition");
+		}
 		%>
-		<h3>Question : <i style="color:red"><b>AJOUTER LE LIBELLE DE LA QUESTION</b></i></h3>
-			<form action="./Test/Add" class="form-inline" method="POST">
+		<h3>Question : A CHANGER<%--<%= q.getLibelle() --%></h3>
+			<form action="./Reponse?addProp=<%--<%= q.getId() %>--%>" class="form-inline" method="POST">
 				<div class="col-md-12 form-group">
 					<label class="col-md-3" for="libelle">Libelle de la réponse : </label>
-					<input type="text" name="libelle" id="libelle" class="col-md-9" />
+					<%
+					if (request.getAttribute("proposition") != null){
+						%>
+						<input type="text" name="libelle" id="libelle" class="col-md-9" value="<%= p.getLibelle()%>" required> 
+						<%
+					}else{
+						%>
+						<input type="text" name="libelle" id="libelle" class="col-md-9" required>
+						<%
+					}
+					%>
+					
 				</div>
 				<div class="col-md-12 form-group" style="padding-top:1em;padding-bottom:1em">
 				<label style="padding-top:1em" class="col-md-5" for="verite">Cette réponse est la bonne réponse ?</label>
 				<div class="col-md-7">
-					<label class="checkbox-inline">
-						<input value="1" type="radio" name="verite" id="verite1" class="form-control"/>
-						OUI
-					</label>
-					<label class="checkbox-inline">
-						<input value="0" type="radio" name="verite" id="verite2" class="form-control"/>
-						NON
-					</label>				
+					<%
+					if (request.getAttribute("proposition") != null){
+						%>
+						
+						<%if(p.isReponse()){
+							%>
+							<label class="checkbox-inline">
+								<input value="1" type="radio" name="verite" id="verite1" class="form-control" required checked>
+								OUI
+							</label>
+							<label class="checkbox-inline">
+								<input value="0" type="radio" name="verite" id="verite2" class="form-control" required>
+								NON
+							</label>
+							<%
+						}
+							%>
+							<label class="checkbox-inline">
+								<input value="1" type="radio" name="verite" id="verite1" class="form-control" required>
+								OUI
+							</label>
+							<label class="checkbox-inline">
+								<input value="0" type="radio" name="verite" id="verite2" class="form-control" checked required>
+								NON
+							</label>							
+
+						<%
+					}else{
+						%>
+						<label class="checkbox-inline">
+							<input value="1" type="radio" name="verite" id="verite1" class="form-control" required>
+							OUI
+						</label>
+						<label class="checkbox-inline">
+							<input value="0" type="radio" name="verite" id="verite2" class="form-control" checked required>
+							NON
+						</label>
+						<%
+					}
+					%>
+				
+
+				
 				</div>
 				
 				</div>

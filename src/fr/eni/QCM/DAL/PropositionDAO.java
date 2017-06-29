@@ -14,6 +14,8 @@ public class PropositionDAO {
 	static String SQL_GET_ONE_PROPOSITION = "SELECT * FROM Proposition WHERE id = ?";
 	static String SQL_GET_ALL = "SELECT * FROM Proposition";
 	static String SQL_GET_ALL_FOR_QUESTION = "SELECT * FROM Proposition WHERE idQuestion = ?";
+	static String SQL_INSERT_PROPO = "INSERT INTO Proposition (libelle,reponse,idQuestion) VALUES (?,?,?)";
+	
 	
 	public static Proposition getOne(int id) throws SQLException {
 		Connection cnx = null;
@@ -95,4 +97,31 @@ public class PropositionDAO {
 		}
 		return proposition;
 	}
+	
+	//Insert d'une nouvelle Proposition
+	public static void creerPropo(String libelle,int reponse,int idQuestion) throws SQLException {
+		Connection cnx = null;
+		PreparedStatement rqt = null;
+		ResultSet rs = null;
+		try{
+			cnx = AccesBase.recupererConnexionJDBC();
+			rqt = cnx.prepareStatement(SQL_INSERT_PROPO);
+			//(libelle,reponse,idQuestion)
+			rqt.setString(1, libelle);
+			rqt.setInt(2, reponse);
+			rqt.setInt(3, idQuestion);
+			rs = rqt.executeQuery();
+			
+			
+		}catch(Exception e){
+			System.out.println("PROPOSITIONDAO FONCTION : creerPropo");
+			System.out.println(e);
+		}
+		finally{
+			if (rs!=null) rs.close();
+			if (rqt!=null) rqt.close();
+			if (cnx!=null) cnx.close();
+		}
+	}
+	
 }

@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletResponse;
 import fr.eni.QCM.BO.Proposition;
 import fr.eni.QCM.BO.Test;
 import fr.eni.QCM.BO.TypeTest;
+import fr.eni.QCM.DAL.PropositionDAO;
 import fr.eni.QCM.DAL.TestDAO;
 import fr.eni.QCM.DAL.TypeTestDAO;
 
@@ -36,10 +37,24 @@ public class PropositionController extends HttpServlet {
 		Proposition p = null;
 		
 		//ADD
+		if(request.getParameter("addProp") != null){
+			String libelle = request.getParameter("libelle");
+			int reponse = Integer.valueOf(request.getParameter("verite"));
+			int idQuestion = Integer.valueOf(request.getParameter("addProp"));
+			
+			try {
+				PropositionDAO.creerPropo(libelle, reponse, idQuestion);
+			} catch (SQLException e) {e.printStackTrace();}
+			request.getRequestDispatcher("/Home").forward(request, response);
+			
+		}
+		
 		//DELETE
 		//UPDATE
 		//TOTAL
-		
+		else{
+			request.getRequestDispatcher("/CreerReponse").forward(request, response);
+		}
 	}
 
 	/**
