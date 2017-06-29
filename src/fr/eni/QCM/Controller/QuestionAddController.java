@@ -31,17 +31,28 @@ public class QuestionAddController extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("QuestionAddController : POST");
-		
-		String libelle = request.getParameter("libelle");
+
 		int idQuestion = Integer.valueOf(request.getParameter("idQuestion"));
+		String libelle = request.getParameter("libelle");
 		int type = Integer.valueOf(request.getParameter("type"));
 		int idSection = Integer.valueOf(request.getParameter("section"));
 		
-		try {
-			QuestionDAO.update(libelle, type, idSection, idQuestion);
-		} catch (SQLException e) {e.printStackTrace();}
+		// INSERT
+		if (idQuestion == 0) {
+			try {
+				QuestionDAO.insert(libelle,  idSection, type);
+			} catch (SQLException e) {e.printStackTrace();}
+			
+		// UPDATE
+		} else {
+			try {
+				QuestionDAO.update(libelle, type, idSection, idQuestion);
+			} catch (SQLException e) {e.printStackTrace();}
+		}
 		
-		response.sendRedirect("../SectionController");
+		String url = "../SectionController?modifid=" + idSection;
+		
+		response.sendRedirect(url);
 	}
 
 }

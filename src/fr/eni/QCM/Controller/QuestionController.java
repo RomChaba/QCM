@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.sun.tools.xjc.generator.util.ExistingBlockReference;
+
 import fr.eni.QCM.BO.Proposition;
 import fr.eni.QCM.BO.Question;
 import fr.eni.QCM.BO.Section;
@@ -31,13 +33,25 @@ public class QuestionController extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		System.out.println("QuestionController : GET");
-		
+
 		// DELETE
 		if (request.getParameter("delete") != null) {
 			int idQuestion = Integer.valueOf(request.getParameter("delete"));
+			int idSection = 0;
+			try {
+				idSection = QuestionDAO.getOne(idQuestion).getSection().getId();
+			} catch (NumberFormatException | SQLException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
 			try {
 				QuestionDAO.delete(idQuestion);
 			} catch (SQLException e) {e.printStackTrace();}
+			
+
+			String url = "./SectionController?modifid=" + idSection;
+			response.sendRedirect(url);
 		}
 		
 		// UPDATE
@@ -57,27 +71,35 @@ public class QuestionController extends HttpServlet {
 			
 			request.setAttribute("Propositions", propositions);
 			request.setAttribute("Question", question);
+		
 		}
 		
-		
-		// Section en cours
-		int idSection = Integer.valueOf(request.getParameter("section"));
-		Section maSection = null;
-		try {
-			maSection = SectionDAO.getOne(idSection);
-		} catch (SQLException e1) {e1.printStackTrace();}
-		
-		// Liste des Sections
-		ArrayList<Section> LesSections = new ArrayList<Section>();
-		try {
-			LesSections = SectionDAO.getAll();
-		} catch (SQLException e) {e.printStackTrace();}
-		
-		
-		
-		request.setAttribute("maSection", maSection);
-		request.setAttribute("LesSections", LesSections);
-		request.getRequestDispatcher("/CreerQuestion").forward(request, response);
+		if (request.getParameter("delete") == null) {
+			
+			// Section en cours
+			int idSection = 0;
+			if (request.getParameter("section") != null) {
+				idSection = Integer.valueOf(request.getParameter("section"));
+			}
+						
+	
+			Section maSection = null;
+			try {
+				maSection = SectionDAO.getOne(idSection);
+			} catch (SQLException e1) {e1.printStackTrace();}
+			
+			// Liste des Sections
+			ArrayList<Section> LesSections = new ArrayList<Section>();
+			try {
+				LesSections = SectionDAO.getAll();
+			} catch (SQLException e) {e.printStackTrace();}
+			
+			
+			
+			request.setAttribute("maSection", maSection);
+			request.setAttribute("LesSections", LesSections);
+			request.getRequestDispatcher("/CreerQuestion").forward(request, response);
+		}
 	}
 
 	/**
