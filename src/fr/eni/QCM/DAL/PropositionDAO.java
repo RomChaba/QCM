@@ -65,7 +65,7 @@ public class PropositionDAO {
 								rs.getInt("id"), 
 								rs.getString("libelle"), 
 								rs.getBoolean("reponse"), 
-								QuestionDAO.getOne(rs.getInt("question"))
+								QuestionDAO.getOne(rs.getInt("idQuestion"))
 						));
 			}
 			
