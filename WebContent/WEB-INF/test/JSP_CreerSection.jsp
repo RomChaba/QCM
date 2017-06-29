@@ -106,11 +106,10 @@ if(request.getAttribute("section")!=null){
 	</table>
 </div>	
 	
-</div>
-<div class="text-center">
-<a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Annuler</a>
-<a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Retour</a>
-</div>		
+</div>	
 <% } %>
+<div class="text-center">
+<a href="javascript:history.back()" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Retour</a>
+</div>	
 </body>
 </html>

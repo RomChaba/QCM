@@ -114,7 +114,7 @@
 				
 				
 				<div class="text-center">
-					<a style="margin-right:1em" href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
+					<a style="margin-right:1em" href="javascript:history.back()" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
 					<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder"/>
 				</div>
 			</form>

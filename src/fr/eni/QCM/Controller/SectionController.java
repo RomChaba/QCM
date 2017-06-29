@@ -163,10 +163,28 @@ public class SectionController extends HttpServlet {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
-			}else{
+			}else if(request.getParameter("nomTest") != null){
+				try {
+					t = TestDAO.getOneByLibelle((String) request.getParameter("nomTest"));
+					userSession.setAttribute("test", t);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
+			else{
 				t = (Test) userSession.getAttribute("test");
 			}
 			
+			if(request.getAttribute("nomTest") != null){
+				try {
+					t = TestDAO.getOneByLibelle((String) request.getAttribute("nomTest"));
+					userSession.setAttribute("test", t);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			}
 
 			
 			try {

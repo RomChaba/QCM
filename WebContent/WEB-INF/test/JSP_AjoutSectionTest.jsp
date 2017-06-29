@@ -36,24 +36,19 @@ Test t = (Test)session.getAttribute("test");
 
 <body>
 <%@ include file="../../menu/JSP_menuBar.jsp"%>
+
 <div class="col-md-12">
-<p class="text-center"><i>Veuilliez choisir ou créer une section du test</i></h1>
+	<h1>Test : <%= t.getLibelle() %></h1>
+</div>
+
 <div class="col-md-6">
-	<div class="col-md-6">
-	<p>Section du test <%= t.getLibelle() %>: </p>
-	</div>
-	<div class="col-md-2">
-	<a href="<%=request.getContextPath()%>/CreerModifSection" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer une nouvelle section</a>
-	</div>
-	
-	
 	<div class="col-md-12">
-	<table class="table table-bordred table-striped">
+	<table class="table table-bordred table-striped" style="margin-top: 2.5em;">
 	<thead>
 		<th>Titre</th>
 		<th>Nb question</th>
 		<th class="text-center">Modifier</th>
-		<th class="text-center">Supprimer</th>
+		<th class="text-center">Enlever</th>
 	</thead>
 	<tbody>
 		<%
@@ -72,7 +67,7 @@ Test t = (Test)session.getAttribute("test");
 			<td><%= s1.getLibelle() %></td>
 			<td class="text-center"><%= nbquestion %></td>
 			<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?modifid=<%=s1.getId() %>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>		
-			<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?selectDel=<%=s1.getId()%>&idTest=<%=t.getId()%>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+			<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?selectDel=<%=s1.getId()%>&idTest=<%=t.getId()%>" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span></a></td>
 		</tr>
 		<%
 	}
@@ -96,8 +91,11 @@ Test t = (Test)session.getAttribute("test");
 	</div>
 </div>
 <div class="col-md-6">
-		<div class="col-md-6">
-	<p>Sections disponible : </p>
+	<div class="col-md-6">
+		<p>Sections disponible : </p>
+	</div>
+	<div class="col-md-2">
+		<a href="<%=request.getContextPath()%>/CreerModifSection" class="btn btn-primary"><span class="glyphicon glyphicon-plus"></span>Créer une nouvelle section</a>
 	</div>
 	<div class="col-md-12">
 	<table class="table table-bordred table-striped">
@@ -140,11 +138,8 @@ Test t = (Test)session.getAttribute("test");
 	
 	</div>
 </div>
-</div>
 <div class="text-center">
-<a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Annuler</a>
-<a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Retour</a>
-<a href="" class="btn btn-default"><span class="glyphicon glyphicon-arrow-right"></span>&nbsp;Valider</a>
+<a href="<%=request.getContextPath() %>/Test" class="btn btn-default"><span class="glyphicon glyphicon-arrow-left"></span>&nbsp;Retour à la liste des tests</a>
 </div>		
 
 </body>

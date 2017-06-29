@@ -123,7 +123,7 @@ ArrayList<Proposition> lesPropositions = (ArrayList<Proposition>)request.getAttr
 				
 				
 				<div class="text-center">
-					<a style="margin-right:1em" href="/" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
+					<a href="javascript:history.back()" style="margin-right:1em" class="btn btn-default btn-lg"><span class="glyphicon glyphicon-arrow-left"></span>Annuler</a>
 					<input type="submit" class="btn btn-success btn-lg" value="Sauvegarder"/>
 				</div>
 			</form>

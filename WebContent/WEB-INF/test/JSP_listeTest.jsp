@@ -35,12 +35,13 @@ body {
 			<th>Créateur</th>
 			<th>Type</th>
 			<th>Timer</th>
-			<th>Modifier</th>
-			<th>Stagiaire</th>
-			<th>Supprimer</th>
+			<th class="text-center">Sections</th>
+			<th class="text-center">Modifier</th>
+			<th class="text-center">Stagiaire</th>
+			<th class="text-center">Supprimer</th>
 		</tr>
 	</thead>
-	<tbody>
+	<tbody> 
 	<%-- Exemple a utiliser pour l'automatisation --%>
 	
 <%	ArrayList<Test> AllTests = (ArrayList<Test>)request.getAttribute("tests");
@@ -53,9 +54,15 @@ body {
 			<td><%= test.getFormateur().getNom() + " " + test.getFormateur().getPrenom() %></td>
 			<td><%= test.getTypeTest().getLibelle() %></td>
 			<td><%= test.getTimer()/60 %>' <%= test.getTimer()%60 %>''</td>
-			<td><a class='btn btn-warning' href="<%=request.getContextPath() %>/Test?update=<%= test.getId() %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
-			<td><a class='btn btn-success'><span class='glyphicon glyphicon-user'></span></a></td>
-			<td><a class='btn btn-danger' href="<%=request.getContextPath() %>/Test?delete=<%= test.getId() %>"><span class='glyphicon glyphicon-remove'></span></a></td>			
+			<td class="text-center">
+				<form action="<%=request.getContextPath() %>/SectionController" method="post">
+					<input type="hidden" name="nomTest" value="<%= test.getLibelle() %>">
+					<button class='btn btn-primary' type="submit" class='btn btn-primary'><span class='glyphicon glyphicon-th-list'></span></button>
+				</form>
+			</td>
+			<td class="text-center"><a class='btn btn-warning' href="<%=request.getContextPath() %>/Test?update=<%= test.getId() %>"><span class='glyphicon glyphicon-pencil'></span></a></td>
+			<td class="text-center"><a class='btn btn-success'><span class='glyphicon glyphicon-user'></span></a></td>
+			<td class="text-center"><a class='btn btn-danger' href="<%=request.getContextPath() %>/Test?delete=<%= test.getId() %>"><span class='glyphicon glyphicon-remove'></span></a></td>			
 		</tr>		
 <%		}
 	}
