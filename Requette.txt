@@ -1,3 +1,0 @@
-SELECT nom,c.idUtilisateur Candidat,f.idUtilisateur Formateur FROM Utilisateur u
-LEFT JOIN Candidat c on c.idUtilisateur = u.id
-LEFT JOIN Formateur f on f.idUtilisateur = u.id;
