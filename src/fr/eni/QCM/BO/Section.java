@@ -3,9 +3,9 @@ package fr.eni.QCM.BO;
 public class Section {
 	
 	//ATTRIBUTS
-	public int id;
-	public String libelle;
-	public Formateur formateur;
+	private int id;
+	private String libelle;
+	private Formateur formateur;
 	
 	// CONSTRUCTEURS
 	public Section() {

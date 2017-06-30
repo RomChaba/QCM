@@ -14,8 +14,8 @@ public class Formateur extends Utilisateur {
 	// FONCTIONS
 	@Override
 	public String toString() {
-		return "Formateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom
-				+ ", mail=" + mail + ", login=" + login + ", password="
-				+ password + "]";
+		return "Formateur [id=" + getId() + ", nom=" + getNom() + ", prenom=" + getPrenom()
+				+ ", mail=" + getMail() + ", login=" + getLogin() + ", password="
+				+ getPassword() + "]";
 	}
 }

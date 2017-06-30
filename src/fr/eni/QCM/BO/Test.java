@@ -5,12 +5,12 @@ import java.util.ArrayList;
 public class Test {
 	
 	// ATTRIBUTS
-	public int id;
-	public String libelle;
-	public int timer;
-	public Formateur formateur;
-	public TypeTest typeTest;
-	public ArrayList<Section> sections;
+	private int id;
+	private String libelle;
+	private int timer;
+	private Formateur formateur;
+	private TypeTest typeTest;
+	private ArrayList<Section> sections;
 	
 	// CONSTRUCTEURS
 	public Test() {

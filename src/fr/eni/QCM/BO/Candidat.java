@@ -3,7 +3,7 @@ package fr.eni.QCM.BO;
 public class Candidat extends Utilisateur{
 	
 	// ATTIBUTS
-	public TypeCandidat TypeCandidat;
+	private TypeCandidat TypeCandidat;
 
 	// CONSTRUCTEURS
 	public Candidat(int id, String nom, String prenom, String mail,	String login, String password) {
@@ -21,9 +21,11 @@ public class Candidat extends Utilisateur{
 	// FONCTIONS
 	@Override
 	public String toString() {
-		return "Candidat [id=" + id + ", nom=" + nom + ", prenom=" + prenom
-				+ ", mail=" + mail + ", login=" + login + ", password="
-				+ password + "]";
+		return "Formateur [id=" + getId() + ", nom=" + getNom() + ", prenom=" + getPrenom()
+				+ ", mail=" + getMail() + ", login=" + getLogin() + ", password="
+				+ getPassword() + "type=" + getTypeCandidat().getLibelle() +"]";
 	}
+	
+	
 
 }

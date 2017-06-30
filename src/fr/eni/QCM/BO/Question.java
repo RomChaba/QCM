@@ -3,11 +3,11 @@ package fr.eni.QCM.BO;
 public class Question {
 	
 	// ATTRIBUTS
-	public int id;
-	public String libelle;
-	public String image;
-	public Section section;
-	public TypeQuestion type;
+	private int id;
+	private String libelle;
+	private String image;
+	private Section section;
+	private TypeQuestion type;
 	
 	// CONSTRUCTEURS
 	public Question() {

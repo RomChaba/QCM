@@ -3,12 +3,12 @@ package fr.eni.QCM.BO;
 public abstract class Utilisateur {
 
 	// ATTRIBUTS
-	public int id;
-	public String nom;
-	public String prenom;
-	public String mail;
-	public String login;
-	public String password;
+	private int id;
+	private String nom;
+	private String prenom;
+	private String mail;
+	private String login;
+	private String password;
 	
 	// CONSTRUCTEUR
 	public Utilisateur(int id, String nom, String prenom, String mail, String login, String password) {

@@ -3,8 +3,8 @@ package fr.eni.QCM.BO;
 public class TypeQuestion {
 	
 	// ATTRIBUTS
-	public int id;
-	public String libelle;
+	private int id;
+	private String libelle;
 	
 	// CONSTRUCTEURS
 	public TypeQuestion(int id, String libelle) {

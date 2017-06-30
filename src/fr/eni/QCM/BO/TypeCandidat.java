@@ -2,8 +2,8 @@ package fr.eni.QCM.BO;
 
 public class TypeCandidat {
 	// ATTRIBUTS
-	public int id;
-	public String libelle;
+	private int id;
+	private String libelle;
 	
 	// CONSTRUCTEUR
 	public TypeCandidat(int id, String libelle) {

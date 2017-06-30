@@ -65,23 +65,7 @@ public class PropositionController extends HttpServlet {
 		}
 		//DELETE
 		else if(request.getParameter("delProp") != null){
-			System.out.println("ENTRER DANS LA PARTIE delProp");
-			int idProp = Integer.valueOf(request.getParameter("delProp"));
-			
-			int idQuestionDEL = 0;
-			int idSectionDEL = 0;
-			
-			
-			try {
-				idQuestionDEL = PropositionDAO.getOne(idProp).getQuestion().getId();
-				idSectionDEL = QuestionDAO.getOne(idQuestionDEL).getSection().getId();
-				PropositionDAO.delPropo(idProp);
-			} catch (SQLException e) {e.printStackTrace();}
-			//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
-
-			String s = "./Question?update="+idQuestionDEL+"&section="+idSectionDEL;
-			System.out.println("LIEN DE LA REDIRECTION : "+s);
-			response.sendRedirect(s);
+			delete(request, response);
 		}
 		
 		//UPDATE
@@ -137,6 +121,32 @@ public class PropositionController extends HttpServlet {
 			
 			request.getRequestDispatcher("/CreerReponse").forward(request, response);
 		}
+	}
+
+	/**
+	 * @param request
+	 * @param response
+	 * @throws IOException
+	 */
+	private void delete(HttpServletRequest request, HttpServletResponse response)
+			throws IOException {
+		System.out.println("ENTRER DANS LA PARTIE delProp");
+		int idProp = Integer.valueOf(request.getParameter("delProp"));
+		
+		int idQuestionDEL = 0;
+		int idSectionDEL = 0;
+		
+		
+		try {
+			idQuestionDEL = PropositionDAO.getOne(idProp).getQuestion().getId();
+			idSectionDEL = QuestionDAO.getOne(idQuestionDEL).getSection().getId();
+			PropositionDAO.delPropo(idProp);
+		} catch (SQLException e) {e.printStackTrace();}
+		//TODO: CHANGER PAR LE BON LIEN VERS LA QUESTION
+
+		String s = "./Question?update="+idQuestionDEL+"&section="+idSectionDEL;
+		System.out.println("LIEN DE LA REDIRECTION : "+s);
+		response.sendRedirect(s);
 	}
 
 	/**

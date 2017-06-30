@@ -4,10 +4,10 @@ package fr.eni.QCM.BO;
 public class Proposition {
 	
 	// ATTRIBUTS
-	public int id;
-	public String libelle;
-	public boolean reponse;
-	public Question question;
+	private int id;
+	private String libelle;
+	private boolean reponse;
+	private Question question;
 	
 	// CONSTRUCTEURS
 	public Proposition() {
