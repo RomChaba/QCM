@@ -124,7 +124,7 @@ Test t = (Test)session.getAttribute("test");
 		<td><%= s.getLibelle() %></td>
 		<td class="text-center"><%= nbquestion %></td>
 		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?modifid=<%=s.getId() %>" class="btn btn-warning"><span class="glyphicon glyphicon-pencil"></span></a></td>		
-		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?suppid=<%=s.getId() %>" class="btn btn-danger"><span class="glyphicon glyphicon-remove"></span></a></td>
+		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?suppid=<%=s.getId() %>" class="btn btn-danger"><span class="glyphicon glyphicon-trash"></span></a></td>
 		<td class="text-center"><a href="<%=request.getContextPath()%>/SectionController?addid=<%=s.getId() %>&idtest=<%= t.getId()%>&nomTest=<%= t.getLibelle()%>" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span></a></td>
 		
 		</tr>
