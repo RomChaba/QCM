@@ -51,9 +51,9 @@ public abstract class Utilisateur {
 	// FONCTIONS
 	@Override
 	public String toString() {
-		return "Utilisateur [id=" + id + ", nom=" + nom + ", prenom=" + prenom
-				+ ", mail=" + mail + ", login=" + login + ", password="
-				+ password + "]";
+		return "Utilisateur [id=" + getId() + ", nom=" + getNom() + ", prenom=" + getPrenom()
+				+ ", mail=" + getMail() + ", login=" + getLogin() + ", password="
+				+ getPassword() + "]";
 	}
 	
 	
